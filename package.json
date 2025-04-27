@@ -10,9 +10,10 @@
 	"description": "Automatically discover potential security issues on the websites you visit.",
 	"homepage": "https://github.com/andrew-ld/autowwwtest",
 	"scripts": {
-		"build": "npm run build:wasm && npm run build:bundle",
-		"build:bundle": "NODE_NO_WARNINGS=1 parcel build",
-		"build:wasm": "GOARCH=wasm GOOS=js go build -o source/libs/re2wasm/re2.wasm source/libs/re2wasm/re2.go",
+		"build:re2wasm": "GOARCH=wasm GOOS=js go build -o source/libs/re2wasm/re2.wasm source/libs/re2wasm/re2.go",
+		"build:dist": "NODE_NO_WARNINGS=1 parcel build",
+		"build:license": "generate-license-file --overwrite",
+		"build": "npm-run-all build:*",
 		"watch": "NODE_NO_WARNINGS=1 parcel watch --no-hmr"
 	},
 	"browserslist": [
@@ -42,6 +43,8 @@
 		"@types/firefox-webext-browser": "^120.0.4",
 		"@types/golang-wasm-exec": "^1.15.2",
 		"buffer": "^6.0.3",
+		"generate-license-file": "^4.0.0",
+		"npm-run-all": "^4.1.5",
 		"os-browserify": "^0.3.0",
 		"parcel": "^2.13.0",
 		"path-browserify": "^1.0.1",
