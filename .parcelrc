@@ -9,5 +9,9 @@
 		"*.{ts,tsx}": [
 			"@parcel/transformer-typescript-tsc"
 		]
-	}
+	},
+	"resolvers": [
+		"parcel-resolver-ignore",
+		"..."
+	]
 }
