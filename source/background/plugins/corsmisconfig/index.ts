@@ -76,7 +76,7 @@ class CorsMisconfigPlugin implements IPlugin {
 				return
 			}
 
-			if (!cookies.find(c => c.sameSite === 'no_restriction')) {
+			if (!cookies.find(c => c.sameSite === 'no_restriction' && c.secure)) {
 				return
 			}
 		}
