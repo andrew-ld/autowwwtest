@@ -1,0 +1,5 @@
+node_modules
+distribution
+.parcel-cache
+source/libs/re2wasm/re2.wasm
+autowwwleak.zip

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Notifications</title>
+		<link rel="stylesheet" href="index.css" />
+	</head>
+	<body>
+		<div class="notifications-container">
+			<h1>Notifications</h1>
+			<div class="plugin-id-list">
+				<b>PLUGIN ID FILTER:</b>
+				<select id="plugin-id-list">
+					<option value="all">Show ALL</option>
+				</select>
+			</div>
+			<ul id="notification-list" class="notification-list"></ul>
+			<button id="load-more-button" class="load-more-button" style="display: none">Load More</button>
+			<div id="no-more-notifications" class="no-more-message" style="display: none">No more notifications.</div>
+		</div>
+		<script type="module" src="index.ts"></script>
+	</body>
+</html>

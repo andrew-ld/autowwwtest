@@ -1,0 +1,9 @@
+node_modules
+distribution
+.parcel-cache
+source/libs/re2wasm/re2.wasm
+.vscode
+.git
+Dockerfile
+docker-create-zip.sh
+autowwwleak.zip

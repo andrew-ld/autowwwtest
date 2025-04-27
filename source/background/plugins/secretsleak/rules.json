@@ -1,0 +1,1451 @@
+[
+	{
+		"regex": "ops_eyJ[a-zA-Z0-9+/]{250,}={0,3}",
+		"description": "Uncovered a possible 1Password service account token, potentially compromising access to secrets in vaults.",
+		"id": "1password-service-account-token",
+		"keywords": ["ops_"],
+		"entropy": 4
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:adafruit)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}([a-z0-9_-]{32})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Identified a potential Adafruit API Key, which could lead to unauthorized access to Adafruit services and sensitive data exposure.",
+		"id": "adafruit-api-key",
+		"keywords": ["adafruit"],
+		"entropy": null
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:adobe)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}([a-f0-9]{32})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Detected a pattern that resembles an Adobe OAuth Web Client ID, posing a risk of compromised Adobe integrations and data breaches.",
+		"id": "adobe-client-id",
+		"keywords": ["adobe"],
+		"entropy": 2
+	},
+	{
+		"regex": "\\b(p8e-(?i)[a-z0-9]{32})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Discovered a potential Adobe Client Secret, which, if exposed, could allow unauthorized Adobe service access and data manipulation.",
+		"id": "adobe-client-secret",
+		"keywords": ["p8e-"],
+		"entropy": 2
+	},
+	{
+		"regex": "AGE-SECRET-KEY-1[QPZRY9X8GF2TVDW0S3JN54KHCE6MUA7L]{58}",
+		"description": "Discovered a potential Age encryption tool secret key, risking data decryption and unauthorized access to sensitive information.",
+		"id": "age-secret-key",
+		"keywords": ["age-secret-key-1"],
+		"entropy": null
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:airtable)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}([a-z0-9]{17})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Uncovered a possible Airtable API Key, potentially compromising database access and leading to data leakage or alteration.",
+		"id": "airtable-api-key",
+		"keywords": ["airtable"],
+		"entropy": null
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:algolia)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}([a-z0-9]{32})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Identified an Algolia API Key, which could result in unauthorized search operations and data exposure on Algolia-managed platforms.",
+		"id": "algolia-api-key",
+		"keywords": ["algolia"],
+		"entropy": null
+	},
+	{
+		"regex": "\\b(LTAI(?i)[a-z0-9]{20})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Detected an Alibaba Cloud AccessKey ID, posing a risk of unauthorized cloud resource access and potential data compromise.",
+		"id": "alibaba-access-key-id",
+		"keywords": ["ltai"],
+		"entropy": 2
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:alibaba)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}([a-z0-9]{30})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Discovered a potential Alibaba Cloud Secret Key, potentially allowing unauthorized operations and data access within Alibaba Cloud.",
+		"id": "alibaba-secret-key",
+		"keywords": ["alibaba"],
+		"entropy": 2
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:asana)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}([0-9]{16})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Discovered a potential Asana Client ID, risking unauthorized access to Asana projects and sensitive task information.",
+		"id": "asana-client-id",
+		"keywords": ["asana"],
+		"entropy": null
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:asana)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}([a-z0-9]{32})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Identified an Asana Client Secret, which could lead to compromised project management integrity and unauthorized access.",
+		"id": "asana-client-secret",
+		"keywords": ["asana"],
+		"entropy": null
+	},
+	{
+		"regex": "[\\w.-]{0,50}?(?i:[\\w.-]{0,50}?(?:atlassian|confluence|jira)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3})(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}([a-zA-Z0-9]{24})(?:[\\x60'\"\\s;]|\\\\[nr]|$)|\\b(ATATT3[A-Za-z0-9_\\-=]{186})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Detected an Atlassian API token, posing a threat to project management and collaboration tool security and data confidentiality.",
+		"id": "atlassian-api-token",
+		"keywords": ["atlassian", "confluence", "jira", "atatt3"],
+		"entropy": 3.5
+	},
+	{
+		"regex": "\\b((?:sc|ext|scauth|authress)_(?i)[a-z0-9]{5,30}\\.[a-z0-9]{4,6}\\.(?-i:acc)[_-][a-z0-9-]{10,32}\\.[a-z0-9+/_=-]{30,120})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Uncovered a possible Authress Service Client Access Key, which may compromise access control services and sensitive data.",
+		"id": "authress-service-client-access-key",
+		"keywords": ["sc_", "ext_", "scauth_", "authress_"],
+		"entropy": 2
+	},
+	{
+		"regex": "\\b((?:A3T[A-Z0-9]|AKIA|ASIA|ABIA|ACCA)[A-Z0-9]{16})\\b",
+		"description": "Identified a pattern that may indicate AWS credentials, risking unauthorized cloud resource access and data breaches on AWS platforms.",
+		"id": "aws-access-token",
+		"keywords": ["a3t", "akia", "asia", "abia", "acca"],
+		"entropy": 3
+	},
+	{
+		"regex": "(?:^|[\\\\'\"\\x60\\s>=:(,)])([a-zA-Z0-9_~.]{3}\\dQ~[a-zA-Z0-9_~.-]{31,34})(?:$|[\\\\'\"\\x60\\s<),])",
+		"description": "Azure AD Client Secret",
+		"id": "azure-ad-client-secret",
+		"keywords": ["q~"],
+		"entropy": 3
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:beamer)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}(b_[a-z0-9=_\\-]{44})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Detected a Beamer API token, potentially compromising content management and exposing sensitive notifications and updates.",
+		"id": "beamer-api-token",
+		"keywords": ["beamer"],
+		"entropy": null
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:bitbucket)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}([a-z0-9]{32})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Discovered a potential Bitbucket Client ID, risking unauthorized repository access and potential codebase exposure.",
+		"id": "bitbucket-client-id",
+		"keywords": ["bitbucket"],
+		"entropy": null
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:bitbucket)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}([a-z0-9=_\\-]{64})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Discovered a potential Bitbucket Client Secret, posing a risk of compromised code repositories and unauthorized access.",
+		"id": "bitbucket-client-secret",
+		"keywords": ["bitbucket"],
+		"entropy": null
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:bittrex)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}([a-z0-9]{32})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Identified a Bittrex Access Key, which could lead to unauthorized access to cryptocurrency trading accounts and financial loss.",
+		"id": "bittrex-access-key",
+		"keywords": ["bittrex"],
+		"entropy": null
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:bittrex)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}([a-z0-9]{32})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Detected a Bittrex Secret Key, potentially compromising cryptocurrency transactions and financial security.",
+		"id": "bittrex-secret-key",
+		"keywords": ["bittrex"],
+		"entropy": null
+	},
+	{
+		"regex": "[\\w.-]{0,50}?(?i:[\\w.-]{0,50}?(?:(?-i:[Mm]eraki|MERAKI))(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3})(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}([0-9a-f]{40})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Cisco Meraki is a cloud-managed IT solution that provides networking, security, and device management through an easy-to-use interface.",
+		"id": "cisco-meraki-api-key",
+		"keywords": ["meraki"],
+		"entropy": 3
+	},
+	{
+		"regex": "\\b(4b1d[A-Za-z0-9]{38})\\b",
+		"description": "Identified a pattern that may indicate clickhouse cloud API secret key, risking unauthorized clickhouse cloud api access and data breaches on ClickHouse Cloud platforms.",
+		"id": "clickhouse-cloud-api-secret-key",
+		"keywords": ["4b1d"],
+		"entropy": 3
+	},
+	{
+		"regex": "(?i)CLOJARS_[a-z0-9]{60}",
+		"description": "Uncovered a possible Clojars API token, risking unauthorized access to Clojure libraries and potential code manipulation.",
+		"id": "clojars-api-token",
+		"keywords": ["clojars_"],
+		"entropy": 2
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:cloudflare)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}([a-z0-9_-]{40})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Detected a Cloudflare API Key, potentially compromising cloud application deployments and operational security.",
+		"id": "cloudflare-api-key",
+		"keywords": ["cloudflare"],
+		"entropy": 2
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:cloudflare)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}([a-f0-9]{37})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Detected a Cloudflare Global API Key, potentially compromising cloud application deployments and operational security.",
+		"id": "cloudflare-global-api-key",
+		"keywords": ["cloudflare"],
+		"entropy": 2
+	},
+	{
+		"regex": "\\b(v1\\.0-[a-f0-9]{24}-[a-f0-9]{146})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Detected a Cloudflare Origin CA Key, potentially compromising cloud application deployments and operational security.",
+		"id": "cloudflare-origin-ca-key",
+		"keywords": ["cloudflare", "v1.0-"],
+		"entropy": 2
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:codecov)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}([a-z0-9]{32})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Found a pattern resembling a Codecov Access Token, posing a risk of unauthorized access to code coverage reports and sensitive data.",
+		"id": "codecov-access-token",
+		"keywords": ["codecov"],
+		"entropy": null
+	},
+	{
+		"regex": "[\\w.-]{0,50}?(?i:[\\w.-]{0,50}?(?:cohere|CO_API_KEY)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3})(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}([a-zA-Z0-9]{40})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Identified a Cohere Token, posing a risk of unauthorized access to AI services and data manipulation.",
+		"id": "cohere-api-token",
+		"keywords": ["cohere", "co_api_key"],
+		"entropy": 4
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:coinbase)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}([a-z0-9_-]{64})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Detected a Coinbase Access Token, posing a risk of unauthorized access to cryptocurrency accounts and financial transactions.",
+		"id": "coinbase-access-token",
+		"keywords": ["coinbase"],
+		"entropy": null
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:confluent)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}([a-z0-9]{16})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Identified a Confluent Access Token, which could compromise access to streaming data platforms and sensitive data flow.",
+		"id": "confluent-access-token",
+		"keywords": ["confluent"],
+		"entropy": null
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:confluent)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}([a-z0-9]{64})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Found a Confluent Secret Key, potentially risking unauthorized operations and data access within Confluent services.",
+		"id": "confluent-secret-key",
+		"keywords": ["confluent"],
+		"entropy": null
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:contentful)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}([a-z0-9=_\\-]{43})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Discovered a Contentful delivery API token, posing a risk to content management systems and data integrity.",
+		"id": "contentful-delivery-api-token",
+		"keywords": ["contentful"],
+		"entropy": null
+	},
+	{
+		"regex": "\\bcurl\\b(?:.*?|.*?(?:[\\r\\n]{1,2}.*?){1,5})[ \\t\\n\\r](?:-H|--header)(?:=|[ \\t]{0,5})(?:\"(?i)(?:Authorization:[ \\t]{0,5}(?:Basic[ \\t]([a-z0-9+/]{8,}={0,3})|(?:Bearer|(?:Api-)?Token)[ \\t]([\\w=~@.+/-]{8,})|([\\w=~@.+/-]{8,}))|(?:(?:X-(?:[a-z]+-)?)?(?:Api-?)?(?:Key|Token)):[ \\t]{0,5}([\\w=~@.+/-]{8,}))\"|'(?i)(?:Authorization:[ \\t]{0,5}(?:Basic[ \\t]([a-z0-9+/]{8,}={0,3})|(?:Bearer|(?:Api-)?Token)[ \\t]([\\w=~@.+/-]{8,})|([\\w=~@.+/-]{8,}))|(?:(?:X-(?:[a-z]+-)?)?(?:Api-?)?(?:Key|Token)):[ \\t]{0,5}([\\w=~@.+/-]{8,}))')(?:\\B|\\s|\\z)",
+		"description": "Discovered a potential authorization token provided in a curl command header, which could compromise the curl accessed resource.",
+		"id": "curl-auth-header",
+		"keywords": ["curl"],
+		"entropy": 2.75
+	},
+	{
+		"regex": "\\bcurl\\b(?:.*|.*(?:[\\r\\n]{1,2}.*){1,5})[ \\t\\n\\r](?:-u|--user)(?:=|[ \\t]{0,5})(\"(:[^\"]{3,}|[^:\"]{3,}:|[^:\"]{3,}:[^\"]{3,})\"|'([^:']{3,}:[^']{3,})'|((?:\"[^\"]{3,}\"|'[^']{3,}'|[\\w$@.-]+):(?:\"[^\"]{3,}\"|'[^']{3,}'|[\\w${}@.-]+)))(?:\\s|\\z)",
+		"description": "Discovered a potential basic authorization token provided in a curl command, which could compromise the curl accessed resource.",
+		"id": "curl-auth-user",
+		"keywords": ["curl"],
+		"entropy": 2
+	},
+	{
+		"regex": "\\b(dapi[a-f0-9]{32}(?:-\\d)?)(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Uncovered a Databricks API token, which may compromise big data analytics platforms and sensitive data processing.",
+		"id": "databricks-api-token",
+		"keywords": ["dapi"],
+		"entropy": 3
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:datadog)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}([a-z0-9]{40})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Detected a Datadog Access Token, potentially risking monitoring and analytics data exposure and manipulation.",
+		"id": "datadog-access-token",
+		"keywords": ["datadog"],
+		"entropy": null
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:dnkey)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}(dnkey-[a-z0-9=_\\-]{26}-[a-z0-9=_\\-]{52})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Identified a Defined Networking API token, which could lead to unauthorized network operations and data breaches.",
+		"id": "defined-networking-api-token",
+		"keywords": ["dnkey"],
+		"entropy": null
+	},
+	{
+		"regex": "\\b(doo_v1_[a-f0-9]{64})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Found a DigitalOcean OAuth Access Token, risking unauthorized cloud resource access and data compromise.",
+		"id": "digitalocean-access-token",
+		"keywords": ["doo_v1_"],
+		"entropy": 3
+	},
+	{
+		"regex": "\\b(dop_v1_[a-f0-9]{64})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Discovered a DigitalOcean Personal Access Token, posing a threat to cloud infrastructure security and data privacy.",
+		"id": "digitalocean-pat",
+		"keywords": ["dop_v1_"],
+		"entropy": 3
+	},
+	{
+		"regex": "(?i)\\b(dor_v1_[a-f0-9]{64})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Uncovered a DigitalOcean OAuth Refresh Token, which could allow prolonged unauthorized access and resource manipulation.",
+		"id": "digitalocean-refresh-token",
+		"keywords": ["dor_v1_"],
+		"entropy": null
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:discord)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}([a-f0-9]{64})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Detected a Discord API key, potentially compromising communication channels and user data privacy on Discord.",
+		"id": "discord-api-token",
+		"keywords": ["discord"],
+		"entropy": null
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:discord)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}([0-9]{18})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Identified a Discord client ID, which may lead to unauthorized integrations and data exposure in Discord applications.",
+		"id": "discord-client-id",
+		"keywords": ["discord"],
+		"entropy": 2
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:discord)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}([a-z0-9=_\\-]{32})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Discovered a potential Discord client secret, risking compromised Discord bot integrations and data leaks.",
+		"id": "discord-client-secret",
+		"keywords": ["discord"],
+		"entropy": 2
+	},
+	{
+		"regex": "dp\\.pt\\.(?i)[a-z0-9]{43}",
+		"description": "Discovered a Doppler API token, posing a risk to environment and secrets management security.",
+		"id": "doppler-api-token",
+		"keywords": ["dp.pt."],
+		"entropy": 2
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:droneci)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}([a-z0-9]{32})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Detected a Droneci Access Token, potentially compromising continuous integration and deployment workflows.",
+		"id": "droneci-access-token",
+		"keywords": ["droneci"],
+		"entropy": null
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:dropbox)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}([a-z0-9]{15})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Identified a Dropbox API secret, which could lead to unauthorized file access and data breaches in Dropbox storage.",
+		"id": "dropbox-api-token",
+		"keywords": ["dropbox"],
+		"entropy": null
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:dropbox)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}([a-z0-9]{11}(AAAAAAAAAA)[a-z0-9\\-_=]{43})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Found a Dropbox long-lived API token, risking prolonged unauthorized access to cloud storage and sensitive data.",
+		"id": "dropbox-long-lived-api-token",
+		"keywords": ["dropbox"],
+		"entropy": null
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:dropbox)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}(sl\\.[a-z0-9\\-=_]{135})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Discovered a Dropbox short-lived API token, posing a risk of temporary but potentially harmful data access and manipulation.",
+		"id": "dropbox-short-lived-api-token",
+		"keywords": ["dropbox"],
+		"entropy": null
+	},
+	{
+		"regex": "duffel_(?:test|live)_(?i)[a-z0-9_\\-=]{43}",
+		"description": "Uncovered a Duffel API token, which may compromise travel platform integrations and sensitive customer data.",
+		"id": "duffel-api-token",
+		"keywords": ["duffel_"],
+		"entropy": 2
+	},
+	{
+		"regex": "dt0c01\\.(?i)[a-z0-9]{24}\\.[a-z0-9]{64}",
+		"description": "Detected a Dynatrace API token, potentially risking application performance monitoring and data exposure.",
+		"id": "dynatrace-api-token",
+		"keywords": ["dt0c01."],
+		"entropy": 4
+	},
+	{
+		"regex": "\\bEZAK(?i)[a-z0-9]{54}\\b",
+		"description": "Identified an EasyPost API token, which could lead to unauthorized postal and shipment service access and data exposure.",
+		"id": "easypost-api-token",
+		"keywords": ["ezak"],
+		"entropy": 2
+	},
+	{
+		"regex": "\\bEZTK(?i)[a-z0-9]{54}\\b",
+		"description": "Detected an EasyPost test API token, risking exposure of test environments and potentially sensitive shipment data.",
+		"id": "easypost-test-api-token",
+		"keywords": ["eztk"],
+		"entropy": 2
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:(?-i:ETSY|[Ee]tsy))(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}([a-z0-9]{24})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Found an Etsy Access Token, potentially compromising Etsy shop management and customer data.",
+		"id": "etsy-access-token",
+		"keywords": ["etsy"],
+		"entropy": 3
+	},
+	{
+		"regex": "(?i)\\b(\\d{15,16}(\\||%)[0-9a-z\\-_]{27,40})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Discovered a Facebook Access Token, posing a risk of unauthorized access to Facebook accounts and personal data exposure.",
+		"id": "facebook-access-token",
+		"keywords": ["facebook"],
+		"entropy": 3
+	},
+	{
+		"regex": "\\b(EAA[MC](?i)[a-z0-9]{100,})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Discovered a Facebook Page Access Token, posing a risk of unauthorized access to Facebook accounts and personal data exposure.",
+		"id": "facebook-page-access-token",
+		"keywords": ["eaam", "eaac"],
+		"entropy": 4
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:facebook)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}([a-f0-9]{32})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Discovered a Facebook Application secret, posing a risk of unauthorized access to Facebook accounts and personal data exposure.",
+		"id": "facebook-secret",
+		"keywords": ["facebook"],
+		"entropy": 3
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:fastly)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}([a-z0-9=_\\-]{32})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Uncovered a Fastly API key, which may compromise CDN and edge cloud services, leading to content delivery and security issues.",
+		"id": "fastly-api-token",
+		"keywords": ["fastly"],
+		"entropy": null
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:finicity)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}([a-f0-9]{32})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Detected a Finicity API token, potentially risking financial data access and unauthorized financial operations.",
+		"id": "finicity-api-token",
+		"keywords": ["finicity"],
+		"entropy": null
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:finicity)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}([a-z0-9]{20})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Identified a Finicity Client Secret, which could lead to compromised financial service integrations and data breaches.",
+		"id": "finicity-client-secret",
+		"keywords": ["finicity"],
+		"entropy": null
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:finnhub)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}([a-z0-9]{20})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Found a Finnhub Access Token, risking unauthorized access to financial market data and analytics.",
+		"id": "finnhub-access-token",
+		"keywords": ["finnhub"],
+		"entropy": null
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:flickr)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}([a-z0-9]{32})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Discovered a Flickr Access Token, posing a risk of unauthorized photo management and potential data leakage.",
+		"id": "flickr-access-token",
+		"keywords": ["flickr"],
+		"entropy": null
+	},
+	{
+		"regex": "FLWSECK_TEST-(?i)[a-h0-9]{12}",
+		"description": "Uncovered a Flutterwave Encryption Key, which may compromise payment processing and sensitive financial information.",
+		"id": "flutterwave-encryption-key",
+		"keywords": ["flwseck_test"],
+		"entropy": 2
+	},
+	{
+		"regex": "FLWPUBK_TEST-(?i)[a-h0-9]{32}-X",
+		"description": "Detected a Finicity Public Key, potentially exposing public cryptographic operations and integrations.",
+		"id": "flutterwave-public-key",
+		"keywords": ["flwpubk_test"],
+		"entropy": 2
+	},
+	{
+		"regex": "FLWSECK_TEST-(?i)[a-h0-9]{32}-X",
+		"description": "Identified a Flutterwave Secret Key, risking unauthorized financial transactions and data breaches.",
+		"id": "flutterwave-secret-key",
+		"keywords": ["flwseck_test"],
+		"entropy": 2
+	},
+	{
+		"regex": "\\b((?:fo1_[\\w-]{43}|fm1[ar]_[a-zA-Z0-9+\\/]{100,}={0,3}|fm2_[a-zA-Z0-9+\\/]{100,}={0,3}))(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Uncovered a Fly.io API key",
+		"id": "flyio-access-token",
+		"keywords": ["fo1_", "fm1", "fm2_"],
+		"entropy": 4
+	},
+	{
+		"regex": "fio-u-(?i)[a-z0-9\\-_=]{64}",
+		"description": "Found a Frame.io API token, potentially compromising video collaboration and project management.",
+		"id": "frameio-api-token",
+		"keywords": ["fio-u-"],
+		"entropy": null
+	},
+	{
+		"regex": "(?i)[\"']secret_key[\"']\\s*=>\\s*[\"'](sk_[\\S]{29})[\"']",
+		"description": "Detected a Freemius secret key, potentially exposing sensitive information.",
+		"id": "freemius-secret-key",
+		"keywords": ["secret_key"],
+		"entropy": null
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:freshbooks)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}([a-z0-9]{64})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Discovered a Freshbooks Access Token, posing a risk to accounting software access and sensitive financial data exposure.",
+		"id": "freshbooks-access-token",
+		"keywords": ["freshbooks"],
+		"entropy": null
+	},
+	{
+		"regex": "\\b(AIza[\\w-]{35})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Uncovered a GCP API key, which could lead to unauthorized access to Google Cloud services and data breaches.",
+		"id": "gcp-api-key",
+		"keywords": ["aiza"],
+		"entropy": 3
+	},
+	{
+		"regex": "(?:ghu|ghs)_[0-9a-zA-Z]{36}",
+		"description": "Identified a GitHub App Token, which may compromise GitHub application integrations and source code security.",
+		"id": "github-app-token",
+		"keywords": ["ghu_", "ghs_"],
+		"entropy": 3
+	},
+	{
+		"regex": "github_pat_\\w{82}",
+		"description": "Found a GitHub Fine-Grained Personal Access Token, risking unauthorized repository access and code manipulation.",
+		"id": "github-fine-grained-pat",
+		"keywords": ["github_pat_"],
+		"entropy": 3
+	},
+	{
+		"regex": "gho_[0-9a-zA-Z]{36}",
+		"description": "Discovered a GitHub OAuth Access Token, posing a risk of compromised GitHub account integrations and data leaks.",
+		"id": "github-oauth",
+		"keywords": ["gho_"],
+		"entropy": 3
+	},
+	{
+		"regex": "ghp_[0-9a-zA-Z]{36}",
+		"description": "Uncovered a GitHub Personal Access Token, potentially leading to unauthorized repository access and sensitive content exposure.",
+		"id": "github-pat",
+		"keywords": ["ghp_"],
+		"entropy": 3
+	},
+	{
+		"regex": "ghr_[0-9a-zA-Z]{36}",
+		"description": "Detected a GitHub Refresh Token, which could allow prolonged unauthorized access to GitHub services.",
+		"id": "github-refresh-token",
+		"keywords": ["ghr_"],
+		"entropy": 3
+	},
+	{
+		"regex": "glcbt-[0-9a-zA-Z]{1,5}_[0-9a-zA-Z_-]{20}",
+		"description": "Identified a GitLab CI/CD Job Token, potential access to projects and some APIs on behalf of a user while the CI job is running.",
+		"id": "gitlab-cicd-job-token",
+		"keywords": ["glcbt-"],
+		"entropy": 3
+	},
+	{
+		"regex": "gldt-[0-9a-zA-Z_\\-]{20}",
+		"description": "Identified a GitLab Deploy Token, risking access to repositories, packages and containers with write access.",
+		"id": "gitlab-deploy-token",
+		"keywords": ["gldt-"],
+		"entropy": 3
+	},
+	{
+		"regex": "glffct-[0-9a-zA-Z_\\-]{20}",
+		"description": "Identified a GitLab feature flag client token, risks exposing user lists and features flags used by an application.",
+		"id": "gitlab-feature-flag-client-token",
+		"keywords": ["glffct-"],
+		"entropy": 3
+	},
+	{
+		"regex": "glft-[0-9a-zA-Z_\\-]{20}",
+		"description": "Identified a GitLab feed token, risking exposure of user data.",
+		"id": "gitlab-feed-token",
+		"keywords": ["glft-"],
+		"entropy": 3
+	},
+	{
+		"regex": "glimt-[0-9a-zA-Z_\\-]{25}",
+		"description": "Identified a GitLab incoming mail token, risking manipulation of data sent by mail.",
+		"id": "gitlab-incoming-mail-token",
+		"keywords": ["glimt-"],
+		"entropy": 3
+	},
+	{
+		"regex": "glagent-[0-9a-zA-Z_\\-]{50}",
+		"description": "Identified a GitLab Kubernetes Agent token, risking access to repos and registry of projects connected via agent.",
+		"id": "gitlab-kubernetes-agent-token",
+		"keywords": ["glagent-"],
+		"entropy": 3
+	},
+	{
+		"regex": "gloas-[0-9a-zA-Z_\\-]{64}",
+		"description": "Identified a GitLab OIDC Application Secret, risking access to apps using GitLab as authentication provider.",
+		"id": "gitlab-oauth-app-secret",
+		"keywords": ["gloas-"],
+		"entropy": 3
+	},
+	{
+		"regex": "glpat-[\\w-]{20}",
+		"description": "Identified a GitLab Personal Access Token, risking unauthorized access to GitLab repositories and codebase exposure.",
+		"id": "gitlab-pat",
+		"keywords": ["glpat-"],
+		"entropy": 3
+	},
+	{
+		"regex": "\\bglpat-[0-9a-zA-Z_-]{27,300}\\.[0-9a-z]{2}[0-9a-z]{7}\\b",
+		"description": "Identified a GitLab Personal Access Token (routable), risking unauthorized access to GitLab repositories and codebase exposure.",
+		"id": "gitlab-pat-routable",
+		"keywords": ["glpat-"],
+		"entropy": 4
+	},
+	{
+		"regex": "glptt-[0-9a-f]{40}",
+		"description": "Found a GitLab Pipeline Trigger Token, potentially compromising continuous integration workflows and project security.",
+		"id": "gitlab-ptt",
+		"keywords": ["glptt-"],
+		"entropy": 3
+	},
+	{
+		"regex": "GR1348941[\\w-]{20}",
+		"description": "Discovered a GitLab Runner Registration Token, posing a risk to CI/CD pipeline integrity and unauthorized access.",
+		"id": "gitlab-rrt",
+		"keywords": ["gr1348941"],
+		"entropy": 3
+	},
+	{
+		"regex": "glrt-[0-9a-zA-Z_\\-]{20}",
+		"description": "Discovered a GitLab Runner Authentication Token, posing a risk to CI/CD pipeline integrity and unauthorized access.",
+		"id": "gitlab-runner-authentication-token",
+		"keywords": ["glrt-"],
+		"entropy": 3
+	},
+	{
+		"regex": "\\bglrt-t\\d_[0-9a-zA-Z_\\-]{27,300}\\.[0-9a-z]{2}[0-9a-z]{7}\\b",
+		"description": "Discovered a GitLab Runner Authentication Token (Routable), posing a risk to CI/CD pipeline integrity and unauthorized access.",
+		"id": "gitlab-runner-authentication-token-routable",
+		"keywords": ["glrt-"],
+		"entropy": 4
+	},
+	{
+		"regex": "glsoat-[0-9a-zA-Z_\\-]{20}",
+		"description": "Discovered a GitLab SCIM Token, posing a risk to unauthorized access for a organization or instance.",
+		"id": "gitlab-scim-token",
+		"keywords": ["glsoat-"],
+		"entropy": 3
+	},
+	{
+		"regex": "_gitlab_session=[0-9a-z]{32}",
+		"description": "Discovered a GitLab Session Cookie, posing a risk to unauthorized access to a user account.",
+		"id": "gitlab-session-cookie",
+		"keywords": ["_gitlab_session="],
+		"entropy": 3
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:gitter)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}([a-z0-9_-]{40})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Uncovered a Gitter Access Token, which may lead to unauthorized access to chat and communication services.",
+		"id": "gitter-access-token",
+		"keywords": ["gitter"],
+		"entropy": null
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:gocardless)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}(live_(?i)[a-z0-9\\-_=]{40})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Detected a GoCardless API token, potentially risking unauthorized direct debit payment operations and financial data exposure.",
+		"id": "gocardless-api-token",
+		"keywords": ["live_", "gocardless"],
+		"entropy": null
+	},
+	{
+		"regex": "(?i)\\b(eyJrIjoi[A-Za-z0-9]{70,400}={0,3})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Identified a Grafana API key, which could compromise monitoring dashboards and sensitive data analytics.",
+		"id": "grafana-api-key",
+		"keywords": ["eyjrijoi"],
+		"entropy": 3
+	},
+	{
+		"regex": "(?i)\\b(glc_[A-Za-z0-9+/]{32,400}={0,3})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Found a Grafana cloud API token, risking unauthorized access to cloud-based monitoring services and data exposure.",
+		"id": "grafana-cloud-api-token",
+		"keywords": ["glc_"],
+		"entropy": 3
+	},
+	{
+		"regex": "(?i)\\b(glsa_[A-Za-z0-9]{32}_[A-Fa-f0-9]{8})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Discovered a Grafana service account token, posing a risk of compromised monitoring services and data integrity.",
+		"id": "grafana-service-account-token",
+		"keywords": ["glsa_"],
+		"entropy": 3
+	},
+	{
+		"regex": "(?:pat|sat)\\.[a-zA-Z0-9_-]{22}\\.[a-zA-Z0-9]{24}\\.[a-zA-Z0-9]{20}",
+		"description": "Identified a Harness Access Token (PAT or SAT), risking unauthorized access to a Harness account.",
+		"id": "harness-api-key",
+		"keywords": ["pat.", "sat."],
+		"entropy": null
+	},
+	{
+		"regex": "(?i)[a-z0-9]{14}\\.(?-i:atlasv1)\\.[a-z0-9\\-_=]{60,70}",
+		"description": "Uncovered a HashiCorp Terraform user/org API token, which may lead to unauthorized infrastructure management and security breaches.",
+		"id": "hashicorp-tf-api-token",
+		"keywords": ["atlasv1"],
+		"entropy": 3.5
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:administrator_login_password|password)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}(\"[a-z0-9=_\\-]{8,20}\")(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Identified a HashiCorp Terraform password field, risking unauthorized infrastructure configuration and security breaches.",
+		"id": "hashicorp-tf-password",
+		"keywords": ["administrator_login_password", "password"],
+		"entropy": 2
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:heroku)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Detected a Heroku API Key, potentially compromising cloud application deployments and operational security.",
+		"id": "heroku-api-key",
+		"keywords": ["heroku"],
+		"entropy": null
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:hubspot)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}([0-9A-F]{8}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{12})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Found a HubSpot API Token, posing a risk to CRM data integrity and unauthorized marketing operations.",
+		"id": "hubspot-api-key",
+		"keywords": ["hubspot"],
+		"entropy": null
+	},
+	{
+		"regex": "\\b(hf_(?i:[a-z]{34}))(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Discovered a Hugging Face Access token, which could lead to unauthorized access to AI models and sensitive data.",
+		"id": "huggingface-access-token",
+		"keywords": ["hf_"],
+		"entropy": 2
+	},
+	{
+		"regex": "\\b(api_org_(?i:[a-z]{34}))(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Uncovered a Hugging Face Organization API token, potentially compromising AI organization accounts and associated data.",
+		"id": "huggingface-organization-api-token",
+		"keywords": ["api_org_"],
+		"entropy": 2
+	},
+	{
+		"regex": "\\b(ico-[a-zA-Z0-9]{32})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Detected an Infracost API Token, risking unauthorized access to cloud cost estimation tools and financial data.",
+		"id": "infracost-api-token",
+		"keywords": ["ico-"],
+		"entropy": 3
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:intercom)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}([a-z0-9=_\\-]{60})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Identified an Intercom API Token, which could compromise customer communication channels and data privacy.",
+		"id": "intercom-api-key",
+		"keywords": ["intercom"],
+		"entropy": null
+	},
+	{
+		"regex": "\\b(s-s4t2(?:ud|af)-(?i)[abcdef0123456789]{64})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Found a Intra42 client secret, which could lead to unauthorized access to the 42School API and sensitive data.",
+		"id": "intra42-client-secret",
+		"keywords": ["intra", "s-s4t2ud-", "s-s4t2af-"],
+		"entropy": 3
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:jfrog|artifactory|bintray|xray)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}([a-z0-9]{73})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Found a JFrog API Key, posing a risk of unauthorized access to software artifact repositories and build pipelines.",
+		"id": "jfrog-api-key",
+		"keywords": ["jfrog", "artifactory", "bintray", "xray"],
+		"entropy": null
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:jfrog|artifactory|bintray|xray)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}([a-z0-9]{64})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Discovered a JFrog Identity Token, potentially compromising access to JFrog services and sensitive software artifacts.",
+		"id": "jfrog-identity-token",
+		"keywords": ["jfrog", "artifactory", "bintray", "xray"],
+		"entropy": null
+	},
+	{
+		"regex": "\\b(ey[a-zA-Z0-9]{17,}\\.ey[a-zA-Z0-9\\/\\\\_-]{17,}\\.(?:[a-zA-Z0-9\\/\\\\_-]{10,}={0,2})?)(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Uncovered a JSON Web Token, which may lead to unauthorized access to web applications and sensitive user data.",
+		"id": "jwt",
+		"keywords": ["ey"],
+		"entropy": 3
+	},
+	{
+		"regex": "\\bZXlK(?:(?P<alg>aGJHY2lPaU)|(?P<apu>aGNIVWlPaU)|(?P<apv>aGNIWWlPaU)|(?P<aud>aGRXUWlPaU)|(?P<b64>aU5qUWlP)|(?P<crit>amNtbDBJanBi)|(?P<cty>amRIa2lPaU)|(?P<epk>bGNHc2lPbn)|(?P<enc>bGJtTWlPaU)|(?P<jku>cWEzVWlPaU)|(?P<jwk>cWQyc2lPb)|(?P<iss>cGMzTWlPaU)|(?P<iv>cGRpSTZJ)|(?P<kid>cmFXUWlP)|(?P<key_ops>clpYbGZiM0J6SWpwY)|(?P<kty>cmRIa2lPaUp)|(?P<nonce>dWIyNWpaU0k2)|(?P<p2c>d01tTWlP)|(?P<p2s>d01uTWlPaU)|(?P<ppt>d2NIUWlPaU)|(?P<sub>emRXSWlPaU)|(?P<svt>emRuUWlP)|(?P<tag>MFlXY2lPaU)|(?P<typ>MGVYQWlPaUp)|(?P<url>MWNtd2l)|(?P<use>MWMyVWlPaUp)|(?P<ver>MlpYSWlPaU)|(?P<version>MlpYSnphVzl1SWpv)|(?P<x>NElqb2)|(?P<x5c>NE5XTWlP)|(?P<x5t>NE5YUWlPaU)|(?P<x5ts256>NE5YUWpVekkxTmlJNkl)|(?P<x5u>NE5YVWlPaU)|(?P<zip>NmFYQWlPaU))[a-zA-Z0-9\\/\\\\_+\\-\\r\\n]{40,}={0,2}",
+		"description": "Detected a Base64-encoded JSON Web Token, posing a risk of exposing encoded authentication and data exchange information.",
+		"id": "jwt-base64",
+		"keywords": ["zxlk"],
+		"entropy": 2
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:kraken)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}([a-z0-9\\/=_\\+\\-]{80,90})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Identified a Kraken Access Token, potentially compromising cryptocurrency trading accounts and financial security.",
+		"id": "kraken-access-token",
+		"keywords": ["kraken"],
+		"entropy": null
+	},
+	{
+		"regex": "(?i)(?:\\bkind:[ \\t]*[\"']?\\bsecret\\b[\"']?(?:.|\\s){0,200}?\\bdata:(?:.|\\s){0,100}?\\s+([\\w.-]+:(?:[ \\t]*(?:\\||>[-+]?)\\s+)?[ \\t]*(?:[\"']?[a-z0-9+/]{10,}={0,3}[\"']?|\\{\\{[ \\t\\w\"|$:=,.-]+}}|\"\"|''))|\\bdata:(?:.|\\s){0,100}?\\s+([\\w.-]+:(?:[ \\t]*(?:\\||>[-+]?)\\s+)?[ \\t]*(?:[\"']?[a-z0-9+/]{10,}={0,3}[\"']?|\\{\\{[ \\t\\w\"|$:=,.-]+}}|\"\"|''))(?:.|\\s){0,200}?\\bkind:[ \\t]*[\"']?\\bsecret\\b[\"']?)",
+		"description": "Possible Kubernetes Secret detected, posing a risk of leaking credentials/tokens from your deployments",
+		"id": "kubernetes-secret-yaml",
+		"keywords": ["secret"],
+		"entropy": null
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:kucoin)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}([a-f0-9]{24})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Found a Kucoin Access Token, risking unauthorized access to cryptocurrency exchange services and transactions.",
+		"id": "kucoin-access-token",
+		"keywords": ["kucoin"],
+		"entropy": null
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:kucoin)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Discovered a Kucoin Secret Key, which could lead to compromised cryptocurrency operations and financial data breaches.",
+		"id": "kucoin-secret-key",
+		"keywords": ["kucoin"],
+		"entropy": null
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:launchdarkly)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}([a-z0-9=_\\-]{40})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Uncovered a Launchdarkly Access Token, potentially compromising feature flag management and application functionality.",
+		"id": "launchdarkly-access-token",
+		"keywords": ["launchdarkly"],
+		"entropy": null
+	},
+	{
+		"regex": "lin_api_(?i)[a-z0-9]{40}",
+		"description": "Detected a Linear API Token, posing a risk to project management tools and sensitive task data.",
+		"id": "linear-api-key",
+		"keywords": ["lin_api_"],
+		"entropy": 2
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:linear)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}([a-f0-9]{32})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Identified a Linear Client Secret, which may compromise secure integrations and sensitive project management data.",
+		"id": "linear-client-secret",
+		"keywords": ["linear"],
+		"entropy": 2
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:linked[_-]?in)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}([a-z0-9]{14})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Found a LinkedIn Client ID, risking unauthorized access to LinkedIn integrations and professional data exposure.",
+		"id": "linkedin-client-id",
+		"keywords": ["linkedin", "linked_in", "linked-in"],
+		"entropy": 2
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:linked[_-]?in)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}([a-z0-9]{16})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Discovered a LinkedIn Client secret, potentially compromising LinkedIn application integrations and user data.",
+		"id": "linkedin-client-secret",
+		"keywords": ["linkedin", "linked_in", "linked-in"],
+		"entropy": 2
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:lob)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}((live|test)_[a-f0-9]{35})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Uncovered a Lob API Key, which could lead to unauthorized access to mailing and address verification services.",
+		"id": "lob-api-key",
+		"keywords": ["test_", "live_"],
+		"entropy": null
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:lob)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}((test|live)_pub_[a-f0-9]{31})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Detected a Lob Publishable API Key, posing a risk of exposing mail and print service integrations.",
+		"id": "lob-pub-api-key",
+		"keywords": ["test_pub", "live_pub", "_pub"],
+		"entropy": null
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:MailchimpSDK.initialize|mailchimp)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}([a-f0-9]{32}-us\\d\\d)(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Identified a Mailchimp API key, potentially compromising email marketing campaigns and subscriber data.",
+		"id": "mailchimp-api-key",
+		"keywords": ["mailchimp"],
+		"entropy": null
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:mailgun)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}(key-[a-f0-9]{32})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Found a Mailgun private API token, risking unauthorized email service operations and data breaches.",
+		"id": "mailgun-private-api-token",
+		"keywords": ["mailgun"],
+		"entropy": null
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:mailgun)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}(pubkey-[a-f0-9]{32})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Discovered a Mailgun public validation key, which could expose email verification processes and associated data.",
+		"id": "mailgun-pub-key",
+		"keywords": ["mailgun"],
+		"entropy": null
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:mailgun)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}([a-h0-9]{32}-[a-h0-9]{8}-[a-h0-9]{8})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Uncovered a Mailgun webhook signing key, potentially compromising email automation and data integrity.",
+		"id": "mailgun-signing-key",
+		"keywords": ["mailgun"],
+		"entropy": null
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:mapbox)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}(pk\\.[a-z0-9]{60}\\.[a-z0-9]{22})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Detected a MapBox API token, posing a risk to geospatial services and sensitive location data exposure.",
+		"id": "mapbox-api-token",
+		"keywords": ["mapbox"],
+		"entropy": null
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:mattermost)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}([a-z0-9]{26})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Identified a Mattermost Access Token, which may compromise team communication channels and data privacy.",
+		"id": "mattermost-access-token",
+		"keywords": ["mattermost"],
+		"entropy": null
+	},
+	{
+		"regex": "\\b([A-Za-z0-9]{6}_[A-Za-z0-9]{29}_mmk)(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Discovered a potential MaxMind license key.",
+		"id": "maxmind-license-key",
+		"keywords": ["_mmk"],
+		"entropy": 4
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:message[_-]?bird)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}([a-z0-9]{25})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Found a MessageBird API token, risking unauthorized access to communication platforms and message data.",
+		"id": "messagebird-api-token",
+		"keywords": ["messagebird", "message-bird", "message_bird"],
+		"entropy": null
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:message[_-]?bird)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Discovered a MessageBird client ID, potentially compromising API integrations and sensitive communication data.",
+		"id": "messagebird-client-id",
+		"keywords": ["messagebird", "message-bird", "message_bird"],
+		"entropy": null
+	},
+	{
+		"regex": "https://[a-z0-9]+\\.webhook\\.office\\.com/webhookb2/[a-z0-9]{8}-([a-z0-9]{4}-){3}[a-z0-9]{12}@[a-z0-9]{8}-([a-z0-9]{4}-){3}[a-z0-9]{12}/IncomingWebhook/[a-z0-9]{32}/[a-z0-9]{8}-([a-z0-9]{4}-){3}[a-z0-9]{12}",
+		"description": "Uncovered a Microsoft Teams Webhook, which could lead to unauthorized access to team collaboration tools and data leaks.",
+		"id": "microsoft-teams-webhook",
+		"keywords": ["webhook.office.com", "webhookb2", "incomingwebhook"],
+		"entropy": null
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:netlify)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}([a-z0-9=_\\-]{40,46})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Detected a Netlify Access Token, potentially compromising web hosting services and site management.",
+		"id": "netlify-access-token",
+		"keywords": ["netlify"],
+		"entropy": null
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:new-relic|newrelic|new_relic)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}(NRJS-[a-f0-9]{19})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Identified a New Relic ingest browser API token, risking unauthorized access to application performance data and analytics.",
+		"id": "new-relic-browser-api-token",
+		"keywords": ["nrjs-"],
+		"entropy": null
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:new-relic|newrelic|new_relic)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}(NRII-[a-z0-9-]{32})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Discovered a New Relic insight insert key, compromising data injection into the platform.",
+		"id": "new-relic-insert-key",
+		"keywords": ["nrii-"],
+		"entropy": null
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:new-relic|newrelic|new_relic)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}([a-z0-9]{64})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Found a New Relic user API ID, posing a risk to application monitoring services and data integrity.",
+		"id": "new-relic-user-api-id",
+		"keywords": ["new-relic", "newrelic", "new_relic"],
+		"entropy": null
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:new-relic|newrelic|new_relic)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}(NRAK-[a-z0-9]{27})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Discovered a New Relic user API Key, which could lead to compromised application insights and performance monitoring.",
+		"id": "new-relic-user-api-key",
+		"keywords": ["nrak"],
+		"entropy": null
+	},
+	{
+		"regex": "(?i)\\b(npm_[a-z0-9]{36})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Uncovered an npm access token, potentially compromising package management and code repository access.",
+		"id": "npm-access-token",
+		"keywords": ["npm_"],
+		"entropy": 2
+	},
+	{
+		"regex": "(?i)<add key=\\\"(?:(?:ClearText)?Password)\\\"\\s*value=\\\"(.{8,})\\\"\\s*/>",
+		"description": "Identified a password within a Nuget config file, potentially compromising package management access.",
+		"id": "nuget-config-password",
+		"keywords": ["<add key="],
+		"entropy": 1
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:nytimes|new-york-times,|newyorktimes)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}([a-z0-9=_\\-]{32})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Detected a Nytimes Access Token, risking unauthorized access to New York Times APIs and content services.",
+		"id": "nytimes-access-token",
+		"keywords": ["nytimes", "new-york-times", "newyorktimes"],
+		"entropy": null
+	},
+	{
+		"regex": "\\b(API-[A-Z0-9]{26})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Discovered a potential Octopus Deploy API key, risking application deployments and operational security.",
+		"id": "octopus-deploy-api-key",
+		"keywords": ["api-"],
+		"entropy": 3
+	},
+	{
+		"regex": "[\\w.-]{0,50}?(?i:[\\w.-]{0,50}?(?:(?-i:[Oo]kta|OKTA))(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3})(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}(00[\\w=\\-]{40})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Identified an Okta Access Token, which may compromise identity management services and user authentication data.",
+		"id": "okta-access-token",
+		"keywords": ["okta"],
+		"entropy": 4
+	},
+	{
+		"regex": "\\b(sk-(?:proj|svcacct|admin)-(?:[A-Za-z0-9_-]{74}|[A-Za-z0-9_-]{58})T3BlbkFJ(?:[A-Za-z0-9_-]{74}|[A-Za-z0-9_-]{58})\\b|sk-[a-zA-Z0-9]{20}T3BlbkFJ[a-zA-Z0-9]{20})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Found an OpenAI API Key, posing a risk of unauthorized access to AI services and data manipulation.",
+		"id": "openai-api-key",
+		"keywords": ["t3blbkfj"],
+		"entropy": 3
+	},
+	{
+		"regex": "\\b(sha256~[\\w-]{43})(?:[^\\w-]|\\z)",
+		"description": "Found an OpenShift user token, potentially compromising an OpenShift/Kubernetes cluster.",
+		"id": "openshift-user-token",
+		"keywords": ["sha256~"],
+		"entropy": 3.5
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:plaid)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}(access-(?:sandbox|development|production)-[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Discovered a Plaid API Token, potentially compromising financial data aggregation and banking services.",
+		"id": "plaid-api-token",
+		"keywords": ["plaid"],
+		"entropy": null
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:plaid)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}([a-z0-9]{24})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Uncovered a Plaid Client ID, which could lead to unauthorized financial service integrations and data breaches.",
+		"id": "plaid-client-id",
+		"keywords": ["plaid"],
+		"entropy": 3.5
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:plaid)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}([a-z0-9]{30})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Detected a Plaid Secret key, risking unauthorized access to financial accounts and sensitive transaction data.",
+		"id": "plaid-secret-key",
+		"keywords": ["plaid"],
+		"entropy": 3.5
+	},
+	{
+		"regex": "\\b(pscale_tkn_(?i)[\\w=\\.-]{32,64})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Identified a PlanetScale API token, potentially compromising database management and operations.",
+		"id": "planetscale-api-token",
+		"keywords": ["pscale_tkn_"],
+		"entropy": 3
+	},
+	{
+		"regex": "\\b(pscale_oauth_[\\w=\\.-]{32,64})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Found a PlanetScale OAuth token, posing a risk to database access control and sensitive data integrity.",
+		"id": "planetscale-oauth-token",
+		"keywords": ["pscale_oauth_"],
+		"entropy": 3
+	},
+	{
+		"regex": "(?i)\\b(pscale_pw_(?i)[\\w=\\.-]{32,64})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Discovered a PlanetScale password, which could lead to unauthorized database operations and data breaches.",
+		"id": "planetscale-password",
+		"keywords": ["pscale_pw_"],
+		"entropy": 3
+	},
+	{
+		"regex": "\\b(PMAK-(?i)[a-f0-9]{24}\\-[a-f0-9]{34})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Uncovered a Postman API token, potentially compromising API testing and development workflows.",
+		"id": "postman-api-token",
+		"keywords": ["pmak-"],
+		"entropy": 3
+	},
+	{
+		"regex": "\\b(pnu_[a-zA-Z0-9]{36})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Detected a Prefect API token, risking unauthorized access to workflow management and automation services.",
+		"id": "prefect-api-token",
+		"keywords": ["pnu_"],
+		"entropy": 2
+	},
+	{
+		"regex": "(?i)-----BEGIN[ A-Z0-9_-]{0,100}PRIVATE KEY(?: BLOCK)?-----[\\s\\S-]{64,}?KEY(?: BLOCK)?-----",
+		"description": "Identified a Private Key, which may compromise cryptographic security and sensitive data encryption.",
+		"id": "private-key",
+		"keywords": ["-----begin"],
+		"entropy": null
+	},
+	{
+		"regex": "[\\w.-]{0,50}?(?i:[\\w.-]{0,50}?(?:private[_-]?ai)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3})(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}([a-z0-9]{32})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Identified a PrivateAI Token, posing a risk of unauthorized access to AI services and data manipulation.",
+		"id": "privateai-api-token",
+		"keywords": ["privateai", "private_ai", "private-ai"],
+		"entropy": 3
+	},
+	{
+		"regex": "\\b(pul-[a-f0-9]{40})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Found a Pulumi API token, posing a risk to infrastructure as code services and cloud resource management.",
+		"id": "pulumi-api-token",
+		"keywords": ["pul-"],
+		"entropy": 2
+	},
+	{
+		"regex": "pypi-AgEIcHlwaS5vcmc[\\w-]{50,1000}",
+		"description": "Discovered a PyPI upload token, potentially compromising Python package distribution and repository integrity.",
+		"id": "pypi-upload-token",
+		"keywords": ["pypi-ageichlwas5vcmc"],
+		"entropy": 3
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:rapidapi)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}([a-z0-9_-]{50})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Uncovered a RapidAPI Access Token, which could lead to unauthorized access to various APIs and data services.",
+		"id": "rapidapi-access-token",
+		"keywords": ["rapidapi"],
+		"entropy": null
+	},
+	{
+		"regex": "\\b(rdme_[a-z0-9]{70})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Detected a Readme API token, risking unauthorized documentation management and content exposure.",
+		"id": "readme-api-token",
+		"keywords": ["rdme_"],
+		"entropy": 2
+	},
+	{
+		"regex": "\\b(rubygems_[a-f0-9]{48})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Identified a Rubygem API token, potentially compromising Ruby library distribution and package management.",
+		"id": "rubygems-api-token",
+		"keywords": ["rubygems_"],
+		"entropy": 2
+	},
+	{
+		"regex": "\\b(tk-us-[\\w-]{48})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Found a Scalingo API token, posing a risk to cloud platform services and application deployment security.",
+		"id": "scalingo-api-token",
+		"keywords": ["tk-us-"],
+		"entropy": 2
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:sendbird)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Discovered a Sendbird Access ID, which could compromise chat and messaging platform integrations.",
+		"id": "sendbird-access-id",
+		"keywords": ["sendbird"],
+		"entropy": null
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:sendbird)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}([a-f0-9]{40})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Uncovered a Sendbird Access Token, potentially risking unauthorized access to communication services and user data.",
+		"id": "sendbird-access-token",
+		"keywords": ["sendbird"],
+		"entropy": null
+	},
+	{
+		"regex": "\\b(SG\\.(?i)[a-z0-9=_\\-\\.]{66})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Detected a SendGrid API token, posing a risk of unauthorized email service operations and data exposure.",
+		"id": "sendgrid-api-token",
+		"keywords": ["sg."],
+		"entropy": 2
+	},
+	{
+		"regex": "\\b(xkeysib-[a-f0-9]{64}\\-(?i)[a-z0-9]{16})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Identified a Sendinblue API token, which may compromise email marketing services and subscriber data privacy.",
+		"id": "sendinblue-api-token",
+		"keywords": ["xkeysib-"],
+		"entropy": 2
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:sentry)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}([a-f0-9]{64})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Found a Sentry.io Access Token (old format), risking unauthorized access to error tracking services and sensitive application data.",
+		"id": "sentry-access-token",
+		"keywords": ["sentry"],
+		"entropy": 3
+	},
+	{
+		"regex": "\\bsntrys_eyJpYXQiO[a-zA-Z0-9+/]{10,200}(?:LCJyZWdpb25fdXJs|InJlZ2lvbl91cmwi|cmVnaW9uX3VybCI6)[a-zA-Z0-9+/]{10,200}={0,2}_[a-zA-Z0-9+/]{43}(?:[^a-zA-Z0-9+/]|\\z)",
+		"description": "Found a Sentry.io Organization Token, risking unauthorized access to error tracking services and sensitive application data.",
+		"id": "sentry-org-token",
+		"keywords": ["sntrys_eyjpyxqio"],
+		"entropy": 4.5
+	},
+	{
+		"regex": "\\b(sntryu_[a-f0-9]{64})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Found a Sentry.io User Token, risking unauthorized access to error tracking services and sensitive application data.",
+		"id": "sentry-user-token",
+		"keywords": ["sntryu_"],
+		"entropy": 3.5
+	},
+	{
+		"regex": "\\b(sm_aat_[a-zA-Z0-9]{16})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Found a Settlemint Application Access Token.",
+		"id": "settlemint-application-access-token",
+		"keywords": ["sm_aat"],
+		"entropy": 3
+	},
+	{
+		"regex": "\\b(sm_pat_[a-zA-Z0-9]{16})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Found a Settlemint Personal Access Token.",
+		"id": "settlemint-personal-access-token",
+		"keywords": ["sm_pat"],
+		"entropy": 3
+	},
+	{
+		"regex": "\\b(sm_sat_[a-zA-Z0-9]{16})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Found a Settlemint Service Access Token.",
+		"id": "settlemint-service-access-token",
+		"keywords": ["sm_sat"],
+		"entropy": 3
+	},
+	{
+		"regex": "\\b(shippo_(?:live|test)_[a-fA-F0-9]{40})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Discovered a Shippo API token, potentially compromising shipping services and customer order data.",
+		"id": "shippo-api-token",
+		"keywords": ["shippo_"],
+		"entropy": 2
+	},
+	{
+		"regex": "shpat_[a-fA-F0-9]{32}",
+		"description": "Uncovered a Shopify access token, which could lead to unauthorized e-commerce platform access and data breaches.",
+		"id": "shopify-access-token",
+		"keywords": ["shpat_"],
+		"entropy": 2
+	},
+	{
+		"regex": "shpca_[a-fA-F0-9]{32}",
+		"description": "Detected a Shopify custom access token, potentially compromising custom app integrations and e-commerce data security.",
+		"id": "shopify-custom-access-token",
+		"keywords": ["shpca_"],
+		"entropy": 2
+	},
+	{
+		"regex": "shppa_[a-fA-F0-9]{32}",
+		"description": "Identified a Shopify private app access token, risking unauthorized access to private app data and store operations.",
+		"id": "shopify-private-app-access-token",
+		"keywords": ["shppa_"],
+		"entropy": 2
+	},
+	{
+		"regex": "shpss_[a-fA-F0-9]{32}",
+		"description": "Found a Shopify shared secret, posing a risk to application authentication and e-commerce platform security.",
+		"id": "shopify-shared-secret",
+		"keywords": ["shpss_"],
+		"entropy": 2
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:BUNDLE_ENTERPRISE__CONTRIBSYS__COM|BUNDLE_GEMS__CONTRIBSYS__COM)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}([a-f0-9]{8}:[a-f0-9]{8})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Discovered a Sidekiq Secret, which could lead to compromised background job processing and application data breaches.",
+		"id": "sidekiq-secret",
+		"keywords": ["bundle_enterprise__contribsys__com", "bundle_gems__contribsys__com"],
+		"entropy": null
+	},
+	{
+		"regex": "(?i)\\bhttps?://([a-f0-9]{8}:[a-f0-9]{8})@(?:gems.contribsys.com|enterprise.contribsys.com)(?:[\\/|\\#|\\?|:]|$)",
+		"description": "Uncovered a Sidekiq Sensitive URL, potentially exposing internal job queues and sensitive operation details.",
+		"id": "sidekiq-sensitive-url",
+		"keywords": ["gems.contribsys.com", "enterprise.contribsys.com"],
+		"entropy": null
+	},
+	{
+		"regex": "(?i)xapp-\\d-[A-Z0-9]+-\\d+-[a-z0-9]+",
+		"description": "Detected a Slack App-level token, risking unauthorized access to Slack applications and workspace data.",
+		"id": "slack-app-token",
+		"keywords": ["xapp"],
+		"entropy": 2
+	},
+	{
+		"regex": "xoxb-[0-9]{10,13}-[0-9]{10,13}[a-zA-Z0-9-]*",
+		"description": "Identified a Slack Bot token, which may compromise bot integrations and communication channel security.",
+		"id": "slack-bot-token",
+		"keywords": ["xoxb"],
+		"entropy": 3
+	},
+	{
+		"regex": "(?i)xoxe.xox[bp]-\\d-[A-Z0-9]{163,166}",
+		"description": "Found a Slack Configuration access token, posing a risk to workspace configuration and sensitive data access.",
+		"id": "slack-config-access-token",
+		"keywords": ["xoxe.xoxb-", "xoxe.xoxp-"],
+		"entropy": 2
+	},
+	{
+		"regex": "(?i)xoxe-\\d-[A-Z0-9]{146}",
+		"description": "Discovered a Slack Configuration refresh token, potentially allowing prolonged unauthorized access to configuration settings.",
+		"id": "slack-config-refresh-token",
+		"keywords": ["xoxe-"],
+		"entropy": 2
+	},
+	{
+		"regex": "xoxb-[0-9]{8,14}-[a-zA-Z0-9]{18,26}",
+		"description": "Uncovered a Slack Legacy bot token, which could lead to compromised legacy bot operations and data exposure.",
+		"id": "slack-legacy-bot-token",
+		"keywords": ["xoxb"],
+		"entropy": 2
+	},
+	{
+		"regex": "xox[os]-\\d+-\\d+-\\d+-[a-fA-F\\d]+",
+		"description": "Detected a Slack Legacy token, risking unauthorized access to older Slack integrations and user data.",
+		"id": "slack-legacy-token",
+		"keywords": ["xoxo", "xoxs"],
+		"entropy": 2
+	},
+	{
+		"regex": "xox[ar]-(?:\\d-)?[0-9a-zA-Z]{8,48}",
+		"description": "Identified a Slack Legacy Workspace token, potentially compromising access to workspace data and legacy features.",
+		"id": "slack-legacy-workspace-token",
+		"keywords": ["xoxa", "xoxr"],
+		"entropy": 2
+	},
+	{
+		"regex": "xox[pe](?:-[0-9]{10,13}){3}-[a-zA-Z0-9-]{28,34}",
+		"description": "Found a Slack User token, posing a risk of unauthorized user impersonation and data access within Slack workspaces.",
+		"id": "slack-user-token",
+		"keywords": ["xoxp-", "xoxe-"],
+		"entropy": 2
+	},
+	{
+		"regex": "(?:https?://)?hooks.slack.com/(?:services|workflows|triggers)/[A-Za-z0-9+/]{43,56}",
+		"description": "Discovered a Slack Webhook, which could lead to unauthorized message posting and data leakage in Slack channels.",
+		"id": "slack-webhook-url",
+		"keywords": ["hooks.slack.com"],
+		"entropy": null
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:snyk[_.-]?(?:(?:api|oauth)[_.-]?)?(?:key|token))(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Uncovered a Snyk API token, potentially compromising software vulnerability scanning and code security.",
+		"id": "snyk-api-token",
+		"keywords": ["snyk"],
+		"entropy": null
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:sonar[_.-]?(login|token))(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}([a-z0-9=_\\-]{40})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Uncovered a Sonar API token, potentially compromising software vulnerability scanning and code security.",
+		"id": "sonar-api-token",
+		"keywords": ["sonar"],
+		"entropy": null
+	},
+	{
+		"regex": "(?i)\\b(\\b(sgp_(?:[a-fA-F0-9]{16}|local)_[a-fA-F0-9]{40}|sgp_[a-fA-F0-9]{40}|[a-fA-F0-9]{40})\\b)(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Sourcegraph is a code search and navigation engine.",
+		"id": "sourcegraph-access-token",
+		"keywords": ["sgp_", "sourcegraph"],
+		"entropy": 3
+	},
+	{
+		"regex": "\\b((?:EAAA|sq0atp-)[\\w-]{22,60})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Detected a Square Access Token, risking unauthorized payment processing and financial transaction exposure.",
+		"id": "square-access-token",
+		"keywords": ["sq0atp-", "eaaa"],
+		"entropy": 2
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:squarespace)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Identified a Squarespace Access Token, which may compromise website management and content control on Squarespace.",
+		"id": "squarespace-access-token",
+		"keywords": ["squarespace"],
+		"entropy": null
+	},
+	{
+		"regex": "\\b((?:sk|rk)_(?:test|live|prod)_[a-zA-Z0-9]{10,99})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Found a Stripe Access Token, posing a risk to payment processing services and sensitive financial data.",
+		"id": "stripe-access-token",
+		"keywords": ["sk_test", "sk_live", "sk_prod", "rk_test", "rk_live", "rk_prod"],
+		"entropy": 2
+	},
+	{
+		"regex": "[\\w.-]{0,50}?(?i:[\\w.-]{0,50}?(?:(?-i:[Ss]umo|SUMO))(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3})(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}(su[a-zA-Z0-9]{12})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Discovered a SumoLogic Access ID, potentially compromising log management services and data analytics integrity.",
+		"id": "sumologic-access-id",
+		"keywords": ["sumo"],
+		"entropy": 3
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:(?-i:[Ss]umo|SUMO))(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}([a-z0-9]{64})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Uncovered a SumoLogic Access Token, which could lead to unauthorized access to log data and analytics insights.",
+		"id": "sumologic-access-token",
+		"keywords": ["sumo"],
+		"entropy": 3
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:telegr)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}([0-9]{5,16}:(?-i:A)[a-z0-9_\\-]{34})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Detected a Telegram Bot API Token, risking unauthorized bot operations and message interception on Telegram.",
+		"id": "telegram-bot-api-token",
+		"keywords": ["telegr"],
+		"entropy": null
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:travis)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}([a-z0-9]{22})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Identified a Travis CI Access Token, potentially compromising continuous integration services and codebase security.",
+		"id": "travisci-access-token",
+		"keywords": ["travis"],
+		"entropy": null
+	},
+	{
+		"regex": "SK[0-9a-fA-F]{32}",
+		"description": "Found a Twilio API Key, posing a risk to communication services and sensitive customer interaction data.",
+		"id": "twilio-api-key",
+		"keywords": ["sk"],
+		"entropy": 3
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:twitch)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}([a-z0-9]{30})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Discovered a Twitch API token, which could compromise streaming services and account integrations.",
+		"id": "twitch-api-token",
+		"keywords": ["twitch"],
+		"entropy": null
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:twitter)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}([a-z0-9]{45})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Uncovered a Twitter Access Secret, potentially risking unauthorized Twitter integrations and data breaches.",
+		"id": "twitter-access-secret",
+		"keywords": ["twitter"],
+		"entropy": null
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:twitter)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}([0-9]{15,25}-[a-zA-Z0-9]{20,40})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Detected a Twitter Access Token, posing a risk of unauthorized account operations and social media data exposure.",
+		"id": "twitter-access-token",
+		"keywords": ["twitter"],
+		"entropy": null
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:twitter)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}([a-z0-9]{25})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Identified a Twitter API Key, which may compromise Twitter application integrations and user data security.",
+		"id": "twitter-api-key",
+		"keywords": ["twitter"],
+		"entropy": null
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:twitter)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}([a-z0-9]{50})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Found a Twitter API Secret, risking the security of Twitter app integrations and sensitive data access.",
+		"id": "twitter-api-secret",
+		"keywords": ["twitter"],
+		"entropy": null
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:twitter)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}(A{22}[a-zA-Z0-9%]{80,100})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Discovered a Twitter Bearer Token, potentially compromising API access and data retrieval from Twitter.",
+		"id": "twitter-bearer-token",
+		"keywords": ["twitter"],
+		"entropy": null
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:typeform)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}(tfp_[a-z0-9\\-_\\.=]{59})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Uncovered a Typeform API token, which could lead to unauthorized survey management and data collection.",
+		"id": "typeform-api-token",
+		"keywords": ["tfp_"],
+		"entropy": null
+	},
+	{
+		"regex": "\\b(hvb\\.[\\w-]{138,300})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Detected a Vault Batch Token, risking unauthorized access to secret management services and sensitive data.",
+		"id": "vault-batch-token",
+		"keywords": ["hvb."],
+		"entropy": 4
+	},
+	{
+		"regex": "\\b((?:hvs\\.[\\w-]{90,120}|s\\.(?i:[a-z0-9]{24})))(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Identified a Vault Service Token, potentially compromising infrastructure security and access to sensitive credentials.",
+		"id": "vault-service-token",
+		"keywords": ["hvs.", "s."],
+		"entropy": 3.5
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:yandex)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}(t1\\.[A-Z0-9a-z_-]+[=]{0,2}\\.[A-Z0-9a-z_-]{86}[=]{0,2})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Found a Yandex Access Token, posing a risk to Yandex service integrations and user data privacy.",
+		"id": "yandex-access-token",
+		"keywords": ["yandex"],
+		"entropy": null
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:yandex)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}(AQVN[A-Za-z0-9_\\-]{35,38})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Discovered a Yandex API Key, which could lead to unauthorized access to Yandex services and data manipulation.",
+		"id": "yandex-api-key",
+		"keywords": ["yandex"],
+		"entropy": null
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:yandex)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}(YC[a-zA-Z0-9_\\-]{38})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Uncovered a Yandex AWS Access Token, potentially compromising cloud resource access and data security on Yandex Cloud.",
+		"id": "yandex-aws-access-token",
+		"keywords": ["yandex"],
+		"entropy": null
+	},
+	{
+		"regex": "(?i)[\\w.-]{0,50}?(?:zendesk)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}([a-z0-9]{40})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+		"description": "Detected a Zendesk Secret Key, risking unauthorized access to customer support services and sensitive ticketing data.",
+		"id": "zendesk-secret-key",
+		"keywords": ["zendesk"],
+		"entropy": null
+	}
+]

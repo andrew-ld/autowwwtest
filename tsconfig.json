@@ -1,0 +1,20 @@
+{
+	"compilerOptions": {
+        "types": [
+            "firefox-webext-browser",
+            "golang-wasm-exec"
+        ],
+		"sourceMap": true,
+		"strict": true,
+		"noImplicitReturns": true,
+		"module": "ES2022",
+		"moduleResolution": "node",
+		"target": "es2015",
+		"allowJs": true,
+		"allowSyntheticDefaultImports": true,
+        "resolveJsonModule": true,
+		"noEmit": true
+	},
+	"include": ["source"],
+	"exclude": ["node_modules"]
+}

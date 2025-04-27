@@ -1,0 +1,45 @@
+{
+	"manifest_version": 3,
+	"name": "AutoWWWTest",
+	"version": "5.0",
+	"description": "Automatically discover potential security issues on the websites you visit.",
+	"icons": {
+		"16": "./resources/autowwwtest-16.png",
+		"32": "./resources/autowwwtest-32.png",
+		"48": "./resources/autowwwtest-48.png",
+		"96": "./resources/autowwwtest-96.png",
+		"128": "./resources/autowwwtest-128.png"
+	},
+	"permissions": [
+		"webRequest",
+		"storage",
+		"notifications",
+		"downloads",
+		"tabs",
+		"scripting",
+		"webRequestBlocking",
+		"webRequestFilterResponse",
+		"cookies"
+	],
+	"host_permissions": ["http://*/*", "https://*/*", "ws://*/*", "wss://*/*"],
+	"background": {
+		"scripts": ["background/index.ts"],
+		"service_worker": "background/index.ts",
+		"type": "module"
+	},
+	"content_security_policy": {
+		"extension_pages": "script-src 'self' 'wasm-unsafe-eval'"
+	},
+	"options_ui": {
+		"page": "options/index.html"
+	},
+	"action": {
+		"default_title": "AutoWWWTest",
+		"default_popup": "options/index.html"
+	},
+	"browser_specific_settings": {
+		"gecko": {
+			"id": "{98276259-2083-40bc-976f-6c64eb27d511}"
+		}
+	}
+}
