@@ -3,7 +3,17 @@ import {GetWorkerMessageReturnType, WorkerMessages} from '../background/mainWork
 export async function sendMessageToWorker<T extends WorkerMessages>(
 	message: T,
 ): Promise<GetWorkerMessageReturnType<T>> {
-	const response = await browser.runtime.sendMessage(message)
+	let response
+
+	while (true) {
+		response = await browser.runtime.sendMessage(message)
+
+		if (!response?.workerInitializationInProgress) {
+			break
+		}
+
+		await new Promise(f => setTimeout(f, 100))
+	}
 
 	if (response?.success) {
 		const {success, ...responseData} = response
