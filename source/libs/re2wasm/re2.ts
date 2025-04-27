@@ -1,5 +1,5 @@
 import AsyncLock from 'async-lock'
-import '../go_wasm/wasm_exec'
+import './go_wasm/wasm_exec'
 
 declare global {
 	class globalThis {

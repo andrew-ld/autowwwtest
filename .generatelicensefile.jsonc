@@ -1,5 +1,5 @@
 {
 	"inputs": ["./package.json"],
 	"output": "./distribution/third-party-licenses.txt",
-	"append": ["LICENSE"]
+	"append": ["./source/libs/re2wasm/LICENSE", "./LICENSE"]
 }
