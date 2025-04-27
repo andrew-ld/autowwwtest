@@ -4,6 +4,29 @@
 
 AutoWWWTest is a browser extension designed to passively analyze web traffic and content in the background, identifying common security misconfigurations and potential vulnerabilities without requiring active scanning. Its plugin-based architecture allows for easy extension with new detection modules.
 
+## Installation
+
+Follow these steps to install the AutoWWWTest Firefox extension:
+
+1.  **Navigate to the Releases Page:**
+    Open your Firefox browser and go to the official releases page for the project on GitHub:
+    [https://github.com/andrew-ld/autowwwtest/releases/](https://github.com/andrew-ld/autowwwtest/releases/)
+
+2.  **Download the Extension File:**
+
+    - Find the latest release (usually the topmost entry on the page).
+    - Look for the "Assets" section within that release.
+    - Click on the file ending with the `.xpi` extension (e.g., `autowwwtest-x.y.z.xpi`).
+
+3.  **Install the Extension:**
+
+    - Firefox will prompt you with a security warning and ask for permission to install the extension from this source.
+    - Click **"Continue to installation"** to proceed with the installation
+    - Click **"Add"** to ultimate with the installation.
+
+4.  **Confirmation:**
+    Once installed, you should see a confirmation message from Firefox, and the extension icon might appear in your toolbar.
+
 ## Building the Add-on
 
 To build the add-on package from the source code, please refer to the detailed instructions located in the following file:
