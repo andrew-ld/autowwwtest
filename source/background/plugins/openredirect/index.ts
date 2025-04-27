@@ -52,7 +52,7 @@ class OpenRedirectPlugin implements IPlugin {
 			redirectPartialString += locationUrl.pathname
 		}
 
-		if (!originalUrl.href.includes(redirectPartialString)) {
+		if (!originalUrl.pathname.includes(redirectPartialString) && !originalUrl.search.includes(redirectPartialString)) {
 			return
 		}
 
