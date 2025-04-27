@@ -15,7 +15,7 @@ enum CorsIssueType {
 }
 
 class CorsMisconfigPlugin implements IPlugin {
-	private settings: SuggestedSettings & {onlyIfCookiesArePresent: boolean}
+	private settings: SuggestedSettings & {onlyIfCookiesArePresent: boolean; onlyIfAllowCredentials: boolean}
 	private notificationCreator: PluginNotificationCreator
 	private notificationLock: AsyncLock
 
@@ -61,6 +61,12 @@ class CorsMisconfigPlugin implements IPlugin {
 
 		if (!issue) {
 			return
+		}
+
+		if (this.settings.onlyIfAllowCredentials) {
+			if (issue.type !== CorsIssueType.INVALID_CREDENTIALS_COMBO) {
+				return
+			}
 		}
 
 		if (this.settings.onlyIfCookiesArePresent) {
@@ -126,6 +132,10 @@ export class CorsMisconfigPluginFactory implements IPluginFactory {
 	getSettingsDefinitions(): Record<string, PluginSettingDefinition> {
 		return {
 			onlyIfCookiesArePresent: {
+				type: 'boolean',
+				default: true,
+			},
+			onlyIfAllowCredentials: {
 				type: 'boolean',
 				default: true,
 			},
