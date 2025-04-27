@@ -4,6 +4,12 @@
 
 AutoWWWTest is a browser extension designed to passively analyze web traffic and content in the background, identifying common security misconfigurations and potential vulnerabilities without requiring active scanning. Its plugin-based architecture allows for easy extension with new detection modules.
 
+## Building the Add-on
+
+To build the add-on package from the source code, please refer to the detailed instructions located in the following file:
+
+**[Detailed Build Instructions](README_BUILD.md)**
+
 ## Features
 
 - **Passive Analysis:** Automatically checks websites as you browse.
