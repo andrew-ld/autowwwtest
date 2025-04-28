@@ -34,7 +34,7 @@ func createAhocorasickGo(this js.Value, args []js.Value) interface{} {
 	keywordsLen := jsKeywords.Length()
 	goKeywords := make([]string, keywordsLen)
 
-	for i := 0; i < keywordsLen; i++ {
+	for i := range keywordsLen {
 		val := jsKeywords.Index(i)
 		if val.Type() != js.TypeString {
 			panic(fmt.Sprintf("createAhocorasickGo: array element at index %d must be a string", i))
