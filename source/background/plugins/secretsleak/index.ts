@@ -11,6 +11,7 @@ import Filter from 'bloom-filter'
 import Pool from 'workerpool/types/Pool'
 import {pool} from 'workerpool'
 import AsyncLock from 'async-lock'
+import murmurhash from 'murmurhash'
 
 class SecretsLeakPlugin implements IPlugin {
 	private bloomFilter: Filter
@@ -72,7 +73,7 @@ class SecretsLeakPlugin implements IPlugin {
 
 	private async handlePotentialNotification(url: string, secret: FoundSecret): Promise<void> {
 		const hostname = new URL(url).hostname
-		const rateLimitKey = `${hostname}:${secret.ruleId}`
+		const rateLimitKey = `${hostname}:${secret.ruleId}:${murmurhash.v3(secret.secret, 0x69)}`
 		const rateLimitMillis = this.settings.suggestedNotificationRateLimit * 60 * 1000
 
 		const canCreateNotification = await this.notificationCreator.notificationRateLimitWithTTL(
