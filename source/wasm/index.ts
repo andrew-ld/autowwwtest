@@ -13,7 +13,7 @@ declare global {
 var WASM_LOADER_COMPLETED: boolean = false
 var WASM_LOADER_LOCK = new AsyncLock()
 
-function ensureRe2Wasm(): Promise<void> {
+function ensureWebAssemblyLoaded(): Promise<void> {
 	if (WASM_LOADER_COMPLETED) {
 		return Promise.resolve()
 	}
@@ -36,7 +36,7 @@ function ensureRe2Wasm(): Promise<void> {
 
 export class WasmWrapper {
 	static async compileRegex(pattern: string): Promise<number> {
-		await ensureRe2Wasm()
+		await ensureWebAssemblyLoaded()
 		if (typeof globalThis.compileRegexGo !== 'function') {
 			throw new Error("Go WASM function 'compileRegexGo' is not loaded or available.")
 		}
@@ -44,7 +44,7 @@ export class WasmWrapper {
 	}
 
 	static async testRegex(regexId: number, text: string): Promise<string | null> {
-		await ensureRe2Wasm()
+		await ensureWebAssemblyLoaded()
 		if (typeof globalThis.testRegexGo !== 'function') {
 			throw new Error("Go WASM function 'testStringGo' is not loaded or available.")
 		}
@@ -52,7 +52,7 @@ export class WasmWrapper {
 	}
 
 	static async createAhocorasick(patterns: string[]): Promise<number> {
-		await ensureRe2Wasm()
+		await ensureWebAssemblyLoaded()
 		if (typeof globalThis.createAhocorasickGo !== 'function') {
 			throw new Error("Go WASM function 'createAhocorasickGo' is not loaded or available.")
 		}
@@ -60,7 +60,7 @@ export class WasmWrapper {
 	}
 
 	static async matchAhocorasick(ahocorasickId: number, text: string): Promise<string[] | null> {
-		await ensureRe2Wasm()
+		await ensureWebAssemblyLoaded()
 		if (typeof globalThis.matchAhocorasickGo !== 'function') {
 			throw new Error("Go WASM function 'matchAhocorasickGo' is not loaded or available.")
 		}
