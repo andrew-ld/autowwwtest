@@ -1,5 +1,4 @@
-import AhoCorasick from 'ahocorasick'
-import GoRegexWrapper from '../../../libs/re2wasm/re2'
+import WasmWrapper from '../../../wasm'
 import * as RAW_RULES from './rules.json'
 
 export interface SecretRule {
@@ -49,9 +48,9 @@ RAW_RULES.forEach(r => {
 
 	async function findSecret(test: string): Promise<string | null> {
 		if (lazyCompiledRegexId === undefined) {
-			lazyCompiledRegexId = await GoRegexWrapper.compile(r.regex)
+			lazyCompiledRegexId = await WasmWrapper.compileRegex(r.regex)
 		}
-		return await GoRegexWrapper.test(lazyCompiledRegexId, test)
+		return await WasmWrapper.testRegex(lazyCompiledRegexId, test)
 	}
 
 	const rule = {...r, findSecret}
@@ -67,4 +66,14 @@ RAW_RULES.forEach(r => {
 	}
 })
 
-export const SECRET_LEAK_RULES_AHO_CORASICK = new AhoCorasick(RAW_RULES.map(r => r.keywords).flat())
+let ahoCorasickLazyCompiledRuleId: number | undefined = undefined
+
+export async function secretLeakRulesFindKeyword(text: string): Promise<string[] | null> {
+	if (ahoCorasickLazyCompiledRuleId === undefined) {
+		ahoCorasickLazyCompiledRuleId = await WasmWrapper.createAhocorasick([
+			...new Set(RAW_RULES.map(r => r.keywords).flat()),
+		])
+	}
+
+	return await WasmWrapper.matchAhocorasick(ahoCorasickLazyCompiledRuleId, text)
+}

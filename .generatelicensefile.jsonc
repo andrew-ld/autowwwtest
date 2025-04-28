@@ -1,5 +1,5 @@
 {
 	"inputs": ["./package.json"],
 	"output": "./distribution/third-party-licenses.txt",
-	"append": ["./source/libs/re2wasm/LICENSE", "./LICENSE"]
+	"append": ["./source/wasm/LICENSE.golang", "source/wasm/LICENSE.ahocorasick", "./LICENSE"]
 }

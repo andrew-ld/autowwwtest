@@ -10,7 +10,7 @@
 	"description": "Automatically discover potential security issues on the websites you visit.",
 	"homepage": "https://github.com/andrew-ld/autowwwtest",
 	"scripts": {
-		"build:re2wasm": "GOARCH=wasm GOOS=js go build -o source/libs/re2wasm/re2.wasm source/libs/re2wasm/re2.go",
+		"build:wasm": "GOARCH=wasm GOOS=js go build -o source/wasm/lib.wasm source/wasm/gosrc/ahocorasick.go source/wasm/gosrc/main.go",
 		"build:dist": "NODE_NO_WARNINGS=1 parcel build",
 		"build:license": "generate-license-file --overwrite",
 		"build": "npm-run-all build:*",
@@ -22,12 +22,10 @@
 	],
 	"prettier": "@github/prettier-config",
 	"dependencies": {
-		"ahocorasick": "^1.0.2",
 		"async-lock": "^1.4.1",
 		"bloom-filter": "^0.2.0",
 		"idb": "^8.0.2",
 		"lru-cache": "^11.1.0",
-		"murmurhash": "^2.0.1",
 		"p-limit": "^6.2.0",
 		"tldts": "^7.0.3",
 		"workerpool": "^9.2.0"
@@ -38,7 +36,6 @@
 		"@parcel/resolver-default": "^2.13.0",
 		"@parcel/transformer-typescript-tsc": "^2.13.0",
 		"@parcel/validator-typescript": "^2.13.0",
-		"@types/ahocorasick": "^1.0.0",
 		"@types/async-lock": "^1.4.2",
 		"@types/bloom-filter": "^0.2.4",
 		"@types/firefox-webext-browser": "^120.0.4",
