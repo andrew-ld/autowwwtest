@@ -56,7 +56,7 @@ class OpenRedirectPlugin implements IPlugin {
 			return
 		}
 
-		const message = `Potential external redirect: The site redirected from '${originalUrl.hostname}' to a different domain '${locationUrl.hostname}' present in the origin url ('${locationHeader}'). Review if this redirect is intended and secure.`
+		const message = `Potential external redirect: The site redirected from '${originalUrl.hostname}' to a different domain '${locationUrl.hostname}' present in the origin url ('${originalUrl}'). Review if this redirect is intended and secure.`
 
 		this.notificationLock.acquire('notification', () => {
 			return this.handlePotentialNotification(details.url, message, originalUrl.hostname)
