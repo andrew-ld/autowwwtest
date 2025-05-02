@@ -1,5 +1,12 @@
 [
 	{
+		"regex": "\\bA3-[A-Z0-9]{6}-(?:(?:[A-Z0-9]{11})|(?:[A-Z0-9]{6}-[A-Z0-9]{5}))-[A-Z0-9]{5}-[A-Z0-9]{5}-[A-Z0-9]{5}\\b",
+		"description": "Uncovered a possible 1Password secret key, potentially compromising access to secrets in vaults.",
+		"id": "1password-secret-key",
+		"keywords": ["a3-"],
+		"entropy": 3.8
+	},
+	{
 		"regex": "ops_eyJ[a-zA-Z0-9+/]{250,}={0,3}",
 		"description": "Uncovered a possible 1Password service account token, potentially compromising access to secrets in vaults.",
 		"id": "1password-service-account-token",
@@ -480,7 +487,7 @@
 		"description": "Uncovered a GCP API key, which could lead to unauthorized access to Google Cloud services and data breaches.",
 		"id": "gcp-api-key",
 		"keywords": ["aiza"],
-		"entropy": 3
+		"entropy": 4
 	},
 	{
 		"regex": "(?:ghu|ghs)_[0-9a-zA-Z]{36}",
@@ -987,6 +994,13 @@
 		"entropy": 3.5
 	},
 	{
+		"regex": "\\b(pplx-[a-zA-Z0-9]{48})(?:[\\x60'\"\\s;]|\\\\[nr]|$|\\b)",
+		"description": "Detected a Perplexity API key, which could lead to unauthorized access to Perplexity AI services and data exposure.",
+		"id": "perplexity-api-key",
+		"keywords": ["pplx-"],
+		"entropy": 4
+	},
+	{
 		"regex": "(?i)[\\w.-]{0,50}?(?:plaid)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}(access-(?:sandbox|development|production)-[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
 		"description": "Discovered a Plaid API Token, potentially compromising financial data aggregation and banking services.",
 		"id": "plaid-api-token",
@@ -1412,13 +1426,6 @@
 		"id": "vault-batch-token",
 		"keywords": ["hvb."],
 		"entropy": 4
-	},
-	{
-		"regex": "\\b((?:hvs\\.[\\w-]{90,120}|s\\.(?i:[a-z0-9]{24})))(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
-		"description": "Identified a Vault Service Token, potentially compromising infrastructure security and access to sensitive credentials.",
-		"id": "vault-service-token",
-		"keywords": ["hvs.", "s."],
-		"entropy": 3.5
 	},
 	{
 		"regex": "(?i)[\\w.-]{0,50}?(?:yandex)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}(t1\\.[A-Z0-9a-z_-]+[=]{0,2}\\.[A-Z0-9a-z_-]{86}[=]{0,2})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",

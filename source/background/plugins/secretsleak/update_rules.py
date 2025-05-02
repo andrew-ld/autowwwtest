@@ -26,7 +26,10 @@ for rule in rules["rules"]:
 
     if rid == "generic-api-key":
         continue
-    
+
+    if rid == "vault-service-token":
+        continue
+
     result.append({"regex": regex, "description": description, "id": rid, "keywords": keywords, "entropy": entropy})
 
 json.dump(result, open("rules.json", "w"), indent=4)
