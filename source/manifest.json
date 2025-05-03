@@ -1,7 +1,7 @@
 {
 	"manifest_version": 3,
 	"name": "AutoWWWTest",
-	"version": "5.3",
+	"version": "5.4",
 	"description": "Automatically discover potential security issues on the websites you visit.",
 	"icons": {
 		"16": "./resources/autowwwtest-16.png",
