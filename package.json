@@ -11,8 +11,8 @@
 	"homepage": "https://github.com/andrew-ld/autowwwtest",
 	"scripts": {
 		"build:wasm": "GOARCH=wasm GOOS=js go build -o source/wasm/lib.wasm source/wasm/gosrc/ahocorasick.go source/wasm/gosrc/main.go",
-		"build:dist": "NODE_NO_WARNINGS=1 parcel build",
 		"build:license": "generate-license-file --overwrite",
+		"build:dist": "NODE_NO_WARNINGS=1 parcel build",
 		"build": "npm-run-all build:*",
 		"watch": "NODE_NO_WARNINGS=1 parcel watch --no-hmr"
 	},
@@ -66,8 +66,5 @@
 				"https://github.com/gitleaks/gitleaks/blob/master/cmd/generate/config/rules/1password.go"
 			]
 		}
-	},
-	"parcelIgnore": [
-		"/third-party-licenses.txt"
-	]
+	}
 }

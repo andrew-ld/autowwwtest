@@ -3,3 +3,4 @@ distribution
 .parcel-cache
 source/wasm/lib.wasm
 autowwwleak.zip
+source/third-party-licenses.txt
