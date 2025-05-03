@@ -20,12 +20,19 @@ class SecretsLeakPlugin implements IPlugin {
 	private settings: {
 		bloomFilterSize: number
 		workerPoolSize: number
+		disabledRules: string
+		mutedRules: string
 	} & SuggestedSettings
+
+	private disabledRules: Set<String>
+	private mutedRules: Set<String>
 
 	private notificationCreator: PluginNotificationCreator
 
 	constructor(settings: Record<string, any> & SuggestedSettings, notificationCreator: PluginNotificationCreator) {
 		this.settings = settings as typeof this.settings
+		this.disabledRules = new Set(this.settings.disabledRules.split(','))
+		this.mutedRules = new Set(this.settings.mutedRules.split(','))
 		this.notificationCreator = notificationCreator
 		this.bloomFilter = Filter.create(this.settings.bloomFilterSize, 0.01)
 		this.pool = pool(new URL('./secretsWorker.ts', import.meta.url).href, {
@@ -71,6 +78,10 @@ class SecretsLeakPlugin implements IPlugin {
 	}
 
 	private async handlePotentialNotification(url: string, secret: FoundSecret): Promise<void> {
+		if (this.disabledRules.has(secret.ruleId)) {
+			return
+		}
+
 		const hostname = new URL(url).hostname
 
 		const rateLimitKey = `${hostname}:${secret.ruleId}:${MurmurHash3(0x69, Buffer.from(secret.secret))}`
@@ -89,7 +100,13 @@ class SecretsLeakPlugin implements IPlugin {
 	}
 
 	private async notify(hostname: string, secret: FoundSecret, url: string): Promise<void> {
-		await this.notificationCreator.createNotification(PluginNotificationPriority.URGENT, {
+		let priority = PluginNotificationPriority.URGENT
+
+		if (this.mutedRules.has(secret.ruleId)) {
+			priority = PluginNotificationPriority.SILENT
+		}
+
+		await this.notificationCreator.createNotification(priority, {
 			title: `Potential Secret Leak Detected (${secret.ruleId})`,
 			description: `Possible leak matching "${secret.description}" (${secret.secret}) found on ${hostname}.`,
 			url: url,
@@ -119,6 +136,14 @@ export class SecretsLeakPluginFactory implements IPluginFactory {
 				default: 8,
 				min: 1,
 				max: Math.max(navigator.hardwareConcurrency || 16, 8),
+			},
+			disabledRules: {
+				type: 'string',
+				default: 'jwt,jwt-base64',
+			},
+			mutedRules: {
+				type: 'string',
+				default: 'vault-service-token',
 			},
 		}
 	}
