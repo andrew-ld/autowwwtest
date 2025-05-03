@@ -12,13 +12,8 @@ import {DoHClient, DoHResponse} from './doh'
 import {LRUCache} from 'lru-cache'
 
 class DomainTakeoverPlugin implements IPlugin {
-	private static DOH_SERVERS = {
-		google: 'https://dns.google/resolve',
-		cloudflare: 'https://cloudflare-dns.com/dns-query',
-	}
-
 	private settings: {
-		dohServer: 'google' | 'cloudflare'
+		dohServer: keyof typeof DomainTakeoverPluginFactory.DOH_SERVERS
 		lruCacheSize: number
 	} & SuggestedSettings
 
@@ -31,7 +26,7 @@ class DomainTakeoverPlugin implements IPlugin {
 		this.settings = settings as typeof this.settings
 		this.notificationCreator = notificationCreator
 		this.notificationLock = new AsyncLock()
-		this.resolver = new DoHClient(DomainTakeoverPlugin.DOH_SERVERS[this.settings.dohServer])
+		this.resolver = new DoHClient(DomainTakeoverPluginFactory.DOH_SERVERS[this.settings.dohServer])
 		this.lruCache = new LRUCache({maxSize: this.settings.lruCacheSize, sizeCalculation: () => 1})
 	}
 
@@ -125,6 +120,11 @@ class DomainTakeoverPlugin implements IPlugin {
 }
 
 export class DomainTakeoverPluginFactory implements IPluginFactory {
+	static DOH_SERVERS = {
+		google: 'https://dns.google/resolve',
+		cloudflare: 'https://cloudflare-dns.com/dns-query',
+	}
+
 	getPluginId(): string {
 		return 'DomainTakeover'
 	}
@@ -134,7 +134,7 @@ export class DomainTakeoverPluginFactory implements IPluginFactory {
 			dohServer: {
 				type: 'enum',
 				default: 'cloudflare',
-				values: ['cloudflare', 'google'],
+				values: Object.keys(DomainTakeoverPluginFactory.DOH_SERVERS),
 			},
 			lruCacheSize: {
 				type: 'number',
