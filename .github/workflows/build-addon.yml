@@ -20,5 +20,5 @@ jobs:
       - name: Upload add-on artifact
         uses: actions/upload-artifact@v4
         with:
-          name: autowwwleak-unsigned.zip
+          name: autowwwleak-unsigned
           path: autowwwleak.zip
