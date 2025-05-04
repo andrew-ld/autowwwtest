@@ -11,6 +11,15 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v4
 
+      - name: Zip source code
+        run: zip -r autowwwleak-code.zip . -x ".git/*"
+
+      - name: Upload source code artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: autowwwleak-artifact
+          path: autowwwleak-code.zip
+
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
@@ -20,5 +29,5 @@ jobs:
       - name: Upload add-on artifact
         uses: actions/upload-artifact@v4
         with:
-          name: autowwwleak-unsigned
+          name: autowwwleak-artifact
           path: autowwwleak.zip
