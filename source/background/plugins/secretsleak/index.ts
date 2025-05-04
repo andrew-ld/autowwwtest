@@ -54,7 +54,7 @@ class SecretsLeakPlugin extends IPlugin {
 			return
 		}
 
-		let data = [details.url, details.originUrl]
+		const data = [details.url, details.originUrl]
 
 		if (details.requestHeaders) {
 			for (const header of details.requestHeaders) {
