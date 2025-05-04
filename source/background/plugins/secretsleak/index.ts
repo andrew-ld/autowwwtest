@@ -12,7 +12,7 @@ import Pool from 'workerpool/types/Pool'
 import {pool} from 'workerpool'
 import AsyncLock from 'async-lock'
 
-class SecretsLeakPlugin implements IPlugin {
+class SecretsLeakPlugin extends IPlugin {
 	private bloomFilter: Filter
 	private pool: Pool
 	private notificationLock: AsyncLock
@@ -22,6 +22,8 @@ class SecretsLeakPlugin implements IPlugin {
 		workerPoolSize: number
 		disabledRules: string
 		mutedRules: string
+		interceptRequestHeaders: boolean
+		interceptResponseBody: boolean
 	} & SuggestedSettings
 
 	private disabledRules: Set<String>
@@ -30,6 +32,7 @@ class SecretsLeakPlugin implements IPlugin {
 	private notificationCreator: PluginNotificationCreator
 
 	constructor(settings: Record<string, any> & SuggestedSettings, notificationCreator: PluginNotificationCreator) {
+		super()
 		this.settings = settings as typeof this.settings
 		this.disabledRules = new Set(this.settings.disabledRules.split(','))
 		this.mutedRules = new Set(this.settings.mutedRules.split(','))
@@ -46,23 +49,53 @@ class SecretsLeakPlugin implements IPlugin {
 		this.pool.terminate(true)
 	}
 
+	async onRequestCreated(details: browser.webRequest._OnSendHeadersDetails): Promise<void> {
+		if (!this.settings.interceptRequestHeaders) {
+			return
+		}
+
+		let data = [details.url, details.originUrl]
+
+		if (details.requestHeaders) {
+			for (const header of details.requestHeaders) {
+				data.push(header.name)
+
+				if (header.value) {
+					data.push(header.value)
+				}
+			}
+		}
+
+		await this.searchForSecrets(Buffer.from(data.filter(d => d).join(' ')), details.url)
+	}
+
 	async onResponseBodyReceived(
 		details: browser.webRequest._OnBeforeRequestDetails,
 		event: browser.webRequest._StreamFilterOndataEvent,
 	): Promise<void> {
+		if (!this.settings.interceptResponseBody) {
+			return
+		}
+
 		if (!event.data.byteLength) {
 			return
 		}
 
-		const dataAsBuffer = Buffer.from(event.data)
+		await this.searchForSecrets(Buffer.from(event.data), details.url)
+	}
 
-		if (this.bloomFilter.contains(dataAsBuffer)) {
+	private async searchForSecrets(data: Buffer, url: string) {
+		if (!data.length) {
 			return
 		}
 
-		this.bloomFilter.insert(dataAsBuffer)
+		if (this.bloomFilter.contains(data)) {
+			return
+		}
 
-		const secrets = (await this.pool.exec('findSecrets', [dataAsBuffer])) as FoundSecret[] | null
+		this.bloomFilter.insert(data)
+
+		const secrets = (await this.pool.exec('findSecrets', [data])) as FoundSecret[] | null
 
 		if (!secrets?.length) {
 			return
@@ -70,7 +103,7 @@ class SecretsLeakPlugin implements IPlugin {
 
 		this.notificationLock.acquire('notification', () => {
 			const promises = secrets.map(secret => {
-				return this.handlePotentialNotification(details.url, secret)
+				return this.handlePotentialNotification(url, secret)
 			})
 
 			return Promise.all(promises)
@@ -112,9 +145,6 @@ class SecretsLeakPlugin implements IPlugin {
 			url: url,
 		})
 	}
-
-	async onResponseHeadersReceived(): Promise<void> {}
-	async onRequestErrorOccurred(): Promise<void> {}
 }
 
 export class SecretsLeakPluginFactory implements IPluginFactory {
@@ -144,6 +174,14 @@ export class SecretsLeakPluginFactory implements IPluginFactory {
 			mutedRules: {
 				type: 'string',
 				default: 'vault-service-token',
+			},
+			interceptRequestHeaders: {
+				type: 'boolean',
+				default: true,
+			},
+			interceptResponseBody: {
+				type: 'boolean',
+				default: true,
 			},
 		}
 	}

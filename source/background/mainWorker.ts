@@ -7,7 +7,19 @@ import {OpenRedirectPluginFactory} from './plugins/openredirect'
 import {SecretsLeakPluginFactory} from './plugins/secretsleak'
 import {initializePluginsManager, PluginsManager} from './pluginsManager'
 
+function shouldProcessRequest(details: {tabId: number}): boolean {
+	if (details.tabId === -1) {
+		return false
+	}
+
+	return true
+}
+
 function onBeforeRequestListener(pluginsManager: PluginsManager, details: browser.webRequest._OnBeforeRequestDetails) {
+	if (!shouldProcessRequest(details)) {
+		return
+	}
+
 	if (details.type !== 'script' && details.type !== 'main_frame') {
 		return
 	}
@@ -16,7 +28,9 @@ function onBeforeRequestListener(pluginsManager: PluginsManager, details: browse
 
 	filter.ondata = event => {
 		pluginsManager.getEnabledPlugins().forEach(plugin => {
-			plugin.onResponseBodyReceived(details, event).catch(console.error)
+			plugin.onResponseBodyReceived(details, event).catch(e => {
+				console.log('plugin onResponseBodyReceived error', plugin, e)
+			})
 		})
 
 		filter.write(event.data)
@@ -31,14 +45,41 @@ function onHeadersReceivedListener(
 	pluginsManager: PluginsManager,
 	details: browser.webRequest._OnHeadersReceivedDetails,
 ) {
+	if (!shouldProcessRequest(details)) {
+		return
+	}
+
 	pluginsManager.getEnabledPlugins().forEach(plugin => {
-		plugin.onResponseHeadersReceived(details).catch(console.error)
+		plugin.onResponseHeadersReceived(details).catch(e => {
+			console.log('plugin onResponseHeadersReceived error', plugin, e)
+		})
 	})
 }
 
 function onErrorOccurredListener(pluginsManager: PluginsManager, details: browser.webRequest._OnErrorOccurredDetails) {
+	if (!shouldProcessRequest(details)) {
+		return
+	}
+
 	pluginsManager.getEnabledPlugins().forEach(plugin => {
-		plugin.onRequestErrorOccurred(details).catch(console.error)
+		plugin.onRequestErrorOccurred(details).catch(e => {
+			console.log('plugin onRequestErrorOccurred error', plugin, e)
+		})
+	})
+}
+
+function onBeforeSendHeadersListener(
+	pluginsManager: PluginsManager,
+	details: browser.webRequest._OnBeforeSendHeadersDetails,
+) {
+	if (!shouldProcessRequest(details)) {
+		return
+	}
+
+	pluginsManager.getEnabledPlugins().forEach(plugin => {
+		plugin.onRequestCreated(details).catch(e => {
+			console.log('plugin onRequestCreated error', plugin, e)
+		})
 	})
 }
 
@@ -77,4 +118,8 @@ export async function initializeMainWorker(): Promise<void> {
 	browser.webRequest.onErrorOccurred.addListener(details => onErrorOccurredListener(pluginsManager, details), {
 		urls: ['<all_urls>'],
 	})
+
+	browser.webRequest.onBeforeSendHeaders.addListener(details => onBeforeSendHeadersListener(pluginsManager, details), {
+		urls: ['<all_urls>'],
+	}, ['requestHeaders'])
 }

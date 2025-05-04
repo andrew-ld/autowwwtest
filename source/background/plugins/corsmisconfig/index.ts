@@ -14,12 +14,13 @@ enum CorsIssueType {
 	INVALID_CREDENTIALS_COMBO = 'invalid_credentials_combo',
 }
 
-class CorsMisconfigPlugin implements IPlugin {
+class CorsMisconfigPlugin extends IPlugin {
 	private settings: SuggestedSettings & {onlyIfCookiesArePresent: boolean; onlyIfAllowCredentials: boolean}
 	private notificationCreator: PluginNotificationCreator
 	private notificationLock: AsyncLock
 
 	constructor(settings: Record<string, any> & SuggestedSettings, notificationCreator: PluginNotificationCreator) {
+		super()
 		this.settings = settings as typeof this.settings
 		this.notificationCreator = notificationCreator
 		this.notificationLock = new AsyncLock()
@@ -31,7 +32,7 @@ class CorsMisconfigPlugin implements IPlugin {
 	}
 
 	async onResponseHeadersReceived(details: browser.webRequest._OnHeadersReceivedDetails): Promise<void> {
-		if (!details.responseHeaders || details.tabId === -1) {
+		if (!details.responseHeaders) {
 			return
 		}
 
@@ -119,9 +120,6 @@ class CorsMisconfigPlugin implements IPlugin {
 			url: url,
 		})
 	}
-
-	async onResponseBodyReceived(): Promise<void> {}
-	async onRequestErrorOccurred(): Promise<void> {}
 }
 
 export class CorsMisconfigPluginFactory implements IPluginFactory {

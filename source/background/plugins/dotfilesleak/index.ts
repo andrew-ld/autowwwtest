@@ -17,7 +17,7 @@ interface DotFile {
 	content: string[]
 }
 
-class DotFilesLeakPlugin implements IPlugin {
+class DotFilesLeakPlugin extends IPlugin {
 	static calculateDotFileSettingsKey(dotFile: DotFile): string {
 		return 'check' + dotFile.key.charAt(0).toUpperCase() + dotFile.key.substring(1)
 	}
@@ -64,6 +64,7 @@ class DotFilesLeakPlugin implements IPlugin {
 	private concurrencyLimiter: LimitFunction
 
 	constructor(settings: Record<string, any> & SuggestedSettings, notificationCreator: PluginNotificationCreator) {
+		super()
 		this.settings = settings as typeof this.settings
 		this.notificationCreator = notificationCreator
 		this.notificationLock = new AsyncLock()
@@ -153,9 +154,6 @@ class DotFilesLeakPlugin implements IPlugin {
 			url: dotFileUrl,
 		})
 	}
-
-	async onRequestErrorOccurred(): Promise<void> {}
-	async onResponseBodyReceived(): Promise<void> {}
 }
 
 export class DotFilesLeakPluginFactory implements IPluginFactory {

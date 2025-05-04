@@ -11,7 +11,7 @@ import AsyncLock from 'async-lock'
 import {DoHClient, DoHResponse} from './doh'
 import {LRUCache} from 'lru-cache'
 
-class DomainTakeoverPlugin implements IPlugin {
+class DomainTakeoverPlugin extends IPlugin {
 	private settings: {
 		dohServer: keyof typeof DomainTakeoverPluginFactory.DOH_SERVERS
 		lruCacheSize: number
@@ -23,6 +23,7 @@ class DomainTakeoverPlugin implements IPlugin {
 	private resolver: DoHClient
 
 	constructor(settings: Record<string, any> & SuggestedSettings, notificationCreator: PluginNotificationCreator) {
+		super()
 		this.settings = settings as typeof this.settings
 		this.notificationCreator = notificationCreator
 		this.notificationLock = new AsyncLock()
@@ -114,9 +115,6 @@ class DomainTakeoverPlugin implements IPlugin {
 			url: originUrl,
 		})
 	}
-
-	async onResponseHeadersReceived(): Promise<void> {}
-	async onResponseBodyReceived(): Promise<void> {}
 }
 
 export class DomainTakeoverPluginFactory implements IPluginFactory {

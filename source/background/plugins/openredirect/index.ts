@@ -8,12 +8,13 @@ import {
 } from '../../pluginsManager'
 import AsyncLock from 'async-lock'
 
-class OpenRedirectPlugin implements IPlugin {
+class OpenRedirectPlugin extends IPlugin {
 	private settings: SuggestedSettings & {onlyGetRequests: boolean}
 	private notificationCreator: PluginNotificationCreator
 	private notificationLock: AsyncLock
 
 	constructor(settings: Record<string, any> & SuggestedSettings, notificationCreator: PluginNotificationCreator) {
+		super()
 		this.settings = settings as typeof this.settings
 		this.notificationCreator = notificationCreator
 		this.notificationLock = new AsyncLock()
@@ -25,7 +26,7 @@ class OpenRedirectPlugin implements IPlugin {
 	}
 
 	async onResponseHeadersReceived(details: browser.webRequest._OnHeadersReceivedDetails): Promise<void> {
-		if (!details.responseHeaders || details.tabId === -1) {
+		if (!details.responseHeaders) {
 			return
 		}
 
@@ -95,9 +96,6 @@ class OpenRedirectPlugin implements IPlugin {
 			url: url,
 		})
 	}
-
-	async onResponseBodyReceived(): Promise<void> {}
-	async onRequestErrorOccurred(): Promise<void> {}
 }
 
 export class OpenRedirectPluginFactory implements IPluginFactory {

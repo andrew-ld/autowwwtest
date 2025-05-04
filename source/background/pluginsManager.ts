@@ -32,14 +32,24 @@ export type PluginSettingDefinition =
 	| PluginSettingEnum
 
 export abstract class IPlugin {
-	abstract onResponseHeadersReceived(details: browser.webRequest._OnHeadersReceivedDetails): Promise<void>
+	onRequestCreated(_details: browser.webRequest._OnSendHeadersDetails): Promise<void> {
+		return Promise.resolve()
+	}
 
-	abstract onResponseBodyReceived(
-		details: browser.webRequest._OnBeforeRequestDetails,
-		event: browser.webRequest._StreamFilterOndataEvent,
-	): Promise<void>
+	onResponseHeadersReceived(_details: browser.webRequest._OnHeadersReceivedDetails): Promise<void> {
+		return Promise.resolve()
+	}
 
-	abstract onRequestErrorOccurred(details: browser.webRequest._OnErrorOccurredDetails): Promise<void>
+	onResponseBodyReceived(
+		_details: browser.webRequest._OnBeforeRequestDetails,
+		_event: browser.webRequest._StreamFilterOndataEvent,
+	): Promise<void> {
+		return Promise.resolve()
+	}
+
+	onRequestErrorOccurred(_details: browser.webRequest._OnErrorOccurredDetails): Promise<void> {
+		return Promise.resolve()
+	}
 }
 
 export interface SuggestedSettings {
