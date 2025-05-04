@@ -1,9 +1,9 @@
 node_modules
 distribution
 .parcel-cache
-source/libs/re2wasm/re2.wasm
+source/wasm/lib.wasm
+autowwwleak.zip
+source/third-party-licenses.txt
+
 .vscode
 .git
-Dockerfile
-docker-create-zip.sh
-autowwwleak.zip
