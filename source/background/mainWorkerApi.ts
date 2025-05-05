@@ -45,11 +45,19 @@ export interface WorkerGetNotificationsReturnType {
 	notifications: NotificationData[]
 }
 
+export interface WorkerResetPluginSettingsMessage extends WorkerMessageBase {
+	action: 'resetPlugin'
+	pluginId: string
+}
+
+export interface WorkerResetPluginSettingsReturnType {}
+
 export type WorkerMessages =
 	| WorkerGetPluginsMessage
 	| WorkerTogglePluginMessage
 	| WorkerUpdatePluginSettingsMessage
 	| WorkerGetNotificationsMessage
+	| WorkerResetPluginSettingsMessage
 
 export type GetWorkerMessageReturnType<T extends WorkerMessages> = T extends WorkerGetPluginsMessage
 	? WorkerGetPluginsReturnType
@@ -59,6 +67,8 @@ export type GetWorkerMessageReturnType<T extends WorkerMessages> = T extends Wor
 	? WorkerUpdatePluginSettingsReturnType
 	: T extends WorkerGetNotificationsMessage
 	? WorkerGetNotificationsReturnType
+	: T extends WorkerResetPluginSettingsMessage
+	? WorkerResetPluginSettingsReturnType
 	: never
 
 async function handleGetPlugins(pluginsManager: PluginsManager): Promise<WorkerGetPluginsReturnType> {
@@ -75,7 +85,6 @@ async function handleGetPlugins(pluginsManager: PluginsManager): Promise<WorkerG
 
 async function handleTogglePlugin(
 	pluginsManager: PluginsManager,
-	_notificationsManager: StoredNotificationsManager,
 	message: WorkerTogglePluginMessage,
 ): Promise<WorkerTogglePluginReturnType> {
 	const plugin = pluginsManager.getManagedPlugin(message.pluginId)
@@ -86,7 +95,6 @@ async function handleTogglePlugin(
 
 async function handleUpdatePluginSettings(
 	pluginsManager: PluginsManager,
-	_notificationsManager: StoredNotificationsManager,
 	message: WorkerUpdatePluginSettingsMessage,
 ): Promise<WorkerUpdatePluginSettingsReturnType> {
 	const plugin = pluginsManager.getManagedPlugin(message.pluginId)
@@ -96,12 +104,21 @@ async function handleUpdatePluginSettings(
 }
 
 async function handleGetNotifications(
-	_pluginsManager: PluginsManager,
 	notificationsManager: StoredNotificationsManager,
 	message: WorkerGetNotificationsMessage,
 ): Promise<WorkerGetNotificationsReturnType> {
 	const notifications = await notificationsManager.fetchNotifications(message.limit, message.offset, message.pluginId)
 	return {notifications}
+}
+
+async function handleResetPlugin(
+	pluginsManager: PluginsManager,
+	message: WorkerResetPluginSettingsMessage,
+): Promise<WorkerResetPluginSettingsReturnType> {
+	const plugin = pluginsManager.getManagedPlugin(message.pluginId)
+	await plugin.setSettings(plugin.buildDefaultSettings())
+	await pluginsManager.reloadAllSettings()
+	return {}
 }
 
 export function mainWorkerApiMessageListener(
@@ -113,10 +130,12 @@ export function mainWorkerApiMessageListener(
 		case 'getPlugins':
 			return handleGetPlugins(pluginsManager)
 		case 'togglePlugin':
-			return handleTogglePlugin(pluginsManager, notificationsManager, message)
+			return handleTogglePlugin(pluginsManager, message)
 		case 'updatePluginSettings':
-			return handleUpdatePluginSettings(pluginsManager, notificationsManager, message)
+			return handleUpdatePluginSettings(pluginsManager, message)
 		case 'getNotifications':
-			return handleGetNotifications(pluginsManager, notificationsManager, message)
+			return handleGetNotifications(notificationsManager, message)
+		case 'resetPlugin':
+			return handleResetPlugin(pluginsManager, message)
 	}
 }

@@ -113,7 +113,7 @@ class PluginStoreManager {
 		await this.database.put(this.storeKey, isEnabled, PluginStoreManager.IS_ENABLED_FLAG_KEY)
 	}
 
-	private buildDefaultSettings(): Record<string, any> & SuggestedSettings {
+	buildDefaultSettings(): Record<string, any> & SuggestedSettings {
 		const definitions = IPluginFactory.getSettingsDefinitionsWithSuggestions(this.plugin)
 		const result: Record<string, any> = {}
 

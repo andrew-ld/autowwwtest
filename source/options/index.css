@@ -91,3 +91,10 @@ h1 {
 .actions .save:hover {
 	background-color: #45a049;
 }
+.actions .reset {
+	background-color: #ff0000;
+	color: white;
+}
+.actions .reset:hover {
+	background-color: #880808;
+}

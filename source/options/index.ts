@@ -127,8 +127,13 @@ function renderPlugin(plugin: WorkerGetPluginsReturnType['plugins'][0]): HTMLEle
 	saveButton.textContent = 'Save'
 	saveButton.classList.add('save')
 	saveButton.setAttribute('data-action', 'save')
-
 	actionsEl.appendChild(saveButton)
+
+	const resetButton = document.createElement('button')
+	resetButton.textContent = 'Reset'
+	resetButton.classList.add('reset')
+	resetButton.setAttribute('data-action', 'reset')
+	actionsEl.appendChild(resetButton)
 
 	pluginEl.appendChild(actionsEl)
 
@@ -143,14 +148,20 @@ pluginsContainerEl.addEventListener('click', async event => {
 	const pluginId = pluginEl.getAttribute('data-plugin-id')!
 	const action = target.getAttribute('data-action')
 
-	if (action !== 'save') return
+	switch (action) {
+		case 'save': {
+			const settings = readPluginSettings(pluginEl)
+			await sendMessageToWorker({action: 'updatePluginSettings', settings: settings, pluginId: pluginId})
+			await loadAndRenderPlugins()
+			break
+		}
 
-	const settings = readPluginSettings(pluginEl)
-
-	await sendMessageToWorker({action: 'updatePluginSettings', settings: settings, pluginId: pluginId})
-
-	await loadAndRenderPlugins()
-	console.log(`Settings saved for plugin "${pluginId}".`)
+		case 'reset': {
+			await sendMessageToWorker({action: 'resetPlugin', pluginId: pluginId})
+			await loadAndRenderPlugins()
+			break
+		}
+	}
 })
 
 pluginsContainerEl.addEventListener('change', async event => {
@@ -163,14 +174,8 @@ pluginsContainerEl.addEventListener('change', async event => {
 	const pluginId = pluginEl.getAttribute('data-plugin-id')!
 	const isEnabled = target.checked
 
-	target.disabled = true
-
 	await sendMessageToWorker({action: 'togglePlugin', pluginId: pluginId, enabled: isEnabled})
-
 	await loadAndRenderPlugins()
-	console.log(`Plugin "${pluginId}" toggled to ${isEnabled}.`)
-
-	target.disabled = false
 })
 
 async function loadAndRenderPlugins(): Promise<void> {
