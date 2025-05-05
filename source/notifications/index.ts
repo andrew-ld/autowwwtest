@@ -35,13 +35,29 @@ function isHttpLink(url: string): boolean {
 	return false
 }
 
-function createNotificationElement(notification: NotificationData): HTMLLIElement {
+function createNotificationElement(notification: NotificationData): HTMLLIElement | undefined {
+	const notificationId = notification.id
+
+	if (notificationId === undefined) {
+		return
+	}
+
 	const listItem = document.createElement('li')
 	listItem.classList.add('notification-item')
+	listItem.setAttribute('notification-id', String(notificationId))
+
+	const titleElementDiv = document.createElement('div')
+	titleElementDiv.classList.add('title-meta')
 
 	const titleElement = document.createElement('h3')
 	titleElement.textContent = notification.title
-	listItem.appendChild(titleElement)
+	titleElementDiv.appendChild(titleElement)
+
+	const deleteButton = document.createElement('img')
+	deleteButton.src = new URL('delete_26dp_000000_FILL0_wght400_GRAD0_opsz24.svg', import.meta.url).href
+	titleElementDiv.appendChild(deleteButton)
+
+	listItem.appendChild(titleElementDiv)
 
 	if (notification.url && isHttpLink(notification.url)) {
 		const link = document.createElement('a')
@@ -63,12 +79,15 @@ function createNotificationElement(notification: NotificationData): HTMLLIElemen
 
 	const metaDiv = document.createElement('div')
 	metaDiv.classList.add('meta')
+
 	const pluginIdSpan = document.createElement('span')
 	pluginIdSpan.textContent = `Plugin: ${notification.pluginId}`
 	metaDiv.appendChild(pluginIdSpan)
+
 	const timestampSpan = document.createElement('span')
 	timestampSpan.textContent = formatTimestamp(notification.timestamp)
 	metaDiv.appendChild(timestampSpan)
+
 	listItem.appendChild(metaDiv)
 
 	return listItem
@@ -90,7 +109,11 @@ async function fetchNotifications(): Promise<void> {
 	const fragment = document.createDocumentFragment()
 
 	newNotifications.forEach(notification => {
-		fragment.appendChild(createNotificationElement(notification))
+		const notificationEl = createNotificationElement(notification)
+
+		if (notificationEl !== undefined) {
+			fragment.appendChild(notificationEl)
+		}
 	})
 
 	notificationList.appendChild(fragment)
@@ -133,6 +156,19 @@ async function fetchPluginList(): Promise<void> {
 		setPluginIdFilter(pluginIdList.value)
 	}
 }
+
+notificationList.addEventListener('click', async event => {
+	const target = event.target as HTMLElement
+	const notificationEl = target.closest('.notification-item') as HTMLElement
+	if (!notificationEl) return
+
+	const notificationId = notificationEl.getAttribute('notification-id')!
+
+	if (confirm('Are you sure you want to delete that notification?')) {
+		await sendMessageToWorker({action: 'deleteNotification', notificationId: Number(notificationId)})
+		notificationEl.style.display = 'none'
+	}
+})
 
 loadMoreButton.addEventListener('click', fetchNotifications)
 

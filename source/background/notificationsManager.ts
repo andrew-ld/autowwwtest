@@ -35,6 +35,10 @@ export class StoredNotificationsManager {
 		return key as number
 	}
 
+	deleteNotification(notificationId: number): Promise<void> {
+		return this.database.delete(StoredNotificationsManager.NOTIFICATIONS_STORE_NAME, notificationId)
+	}
+
 	async fetchNotifications(
 		limit: number = 10,
 		offset: number = 0,

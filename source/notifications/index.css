@@ -47,6 +47,14 @@ h1 {
 	color: #555;
 }
 
+.title-meta {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 10px;
+}
+
 .notification-item .meta {
 	font-size: 0.8em;
 	color: #777;

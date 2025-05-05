@@ -45,6 +45,13 @@ export interface WorkerGetNotificationsReturnType {
 	notifications: NotificationData[]
 }
 
+export interface WorkerDeleteNotificationMessage extends WorkerMessageBase {
+	action: 'deleteNotification'
+	notificationId: number
+}
+
+export interface WorkerDeleteNotificationReturnType {}
+
 export interface WorkerResetPluginSettingsMessage extends WorkerMessageBase {
 	action: 'resetPlugin'
 	pluginId: string
@@ -58,6 +65,7 @@ export type WorkerMessages =
 	| WorkerUpdatePluginSettingsMessage
 	| WorkerGetNotificationsMessage
 	| WorkerResetPluginSettingsMessage
+	| WorkerDeleteNotificationMessage
 
 export type GetWorkerMessageReturnType<T extends WorkerMessages> = T extends WorkerGetPluginsMessage
 	? WorkerGetPluginsReturnType
@@ -69,6 +77,8 @@ export type GetWorkerMessageReturnType<T extends WorkerMessages> = T extends Wor
 	? WorkerGetNotificationsReturnType
 	: T extends WorkerResetPluginSettingsMessage
 	? WorkerResetPluginSettingsReturnType
+	: T extends WorkerDeleteNotificationMessage
+	? WorkerDeleteNotificationReturnType
 	: never
 
 async function handleGetPlugins(pluginsManager: PluginsManager): Promise<WorkerGetPluginsReturnType> {
@@ -121,6 +131,14 @@ async function handleResetPlugin(
 	return {}
 }
 
+async function handleDeleteNotification(
+	notificationsManager: StoredNotificationsManager,
+	message: WorkerDeleteNotificationMessage,
+): Promise<WorkerDeleteNotificationReturnType> {
+	await notificationsManager.deleteNotification(message.notificationId)
+	return {}
+}
+
 export function mainWorkerApiMessageListener(
 	pluginsManager: PluginsManager,
 	notificationsManager: StoredNotificationsManager,
@@ -137,5 +155,7 @@ export function mainWorkerApiMessageListener(
 			return handleGetNotifications(notificationsManager, message)
 		case 'resetPlugin':
 			return handleResetPlugin(pluginsManager, message)
+		case 'deleteNotification':
+			return handleDeleteNotification(notificationsManager, message)
 	}
 }

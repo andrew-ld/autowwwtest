@@ -1,4 +1,4 @@
-import {WorkerGetPluginsMessage, WorkerGetPluginsReturnType} from '../background/mainWorkerApi'
+import {WorkerGetPluginsReturnType} from '../background/mainWorkerApi'
 import {PluginSettingDefinition} from '../background/pluginsManager'
 import {sendMessageToWorker} from '../utils/ui_api'
 
