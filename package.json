@@ -14,7 +14,8 @@
 		"build:license": "generate-license-file --overwrite",
 		"build:dist": "NODE_NO_WARNINGS=1 parcel build",
 		"build": "npm-run-all build:*",
-		"watch": "NODE_NO_WARNINGS=1 parcel watch --no-hmr"
+		"watch": "NODE_NO_WARNINGS=1 parcel watch --no-hmr",
+		"debug": "npx web-ext run --devtools"
 	},
 	"browserslist": [
 		"last 1 Chrome version",
@@ -48,7 +49,9 @@
 		"parcel-resolver-ignore": "^2.2.0",
 		"path-browserify": "^1.0.1",
 		"process": "^0.11.10",
-		"typescript": "^5.8.3"
+		"svgo": "^3.3.2",
+		"typescript": "^5.8.3",
+		"web-ext": "^8.6.0"
 	},
 	"@parcel/resolver-default": {
 		"packageExports": true
