@@ -15,7 +15,7 @@
 		"build:dist": "NODE_NO_WARNINGS=1 parcel build",
 		"build": "npm-run-all build:*",
 		"watch": "NODE_NO_WARNINGS=1 parcel watch --no-hmr",
-		"debug": "npx web-ext run --devtools"
+		"debug": "web-ext run --devtools"
 	},
 	"browserslist": [
 		"last 1 Chrome version",
