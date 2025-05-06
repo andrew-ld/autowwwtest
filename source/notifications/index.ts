@@ -55,6 +55,7 @@ function createNotificationElement(notification: NotificationData): HTMLLIElemen
 
 	const deleteButton = document.createElement('img')
 	deleteButton.src = new URL('delete_26dp_000000_FILL0_wght400_GRAD0_opsz24.svg', import.meta.url).href
+	deleteButton.setAttribute('data-action', 'delete')
 	titleElementDiv.appendChild(deleteButton)
 
 	listItem.appendChild(titleElementDiv)
@@ -159,6 +160,9 @@ async function fetchPluginList(): Promise<void> {
 
 notificationList.addEventListener('click', async event => {
 	const target = event.target as HTMLElement
+	console.log(target.getAttribute('data-action'))
+	if (target.getAttribute('data-action') !== 'delete') return
+
 	const notificationEl = target.closest('.notification-item') as HTMLElement
 	if (!notificationEl) return
 
