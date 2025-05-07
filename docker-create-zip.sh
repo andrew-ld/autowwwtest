@@ -12,4 +12,4 @@ trap cleanup EXIT
 
 docker buildx build --output type=local,dest="$tmpdir" --progress plain .
 
-cp "$tmpdir"/autowwwleak.zip .
+cp "$tmpdir"/autowwwtest.zip .

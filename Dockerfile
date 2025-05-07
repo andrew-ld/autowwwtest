@@ -20,8 +20,8 @@ RUN bash -c "source $NVM_DIR/nvm.sh && exec npm run build"
 
 WORKDIR /build/distribution
 
-RUN zip -r autowwwleak.zip .
+RUN zip -r autowwwtest.zip .
 
 FROM scratch AS export
 
-COPY --from=builder /build/distribution/autowwwleak.zip .
+COPY --from=builder /build/distribution/autowwwtest.zip .

@@ -2,7 +2,7 @@ node_modules
 distribution
 .parcel-cache
 source/wasm/lib.wasm
-autowwwleak.zip
+autowwwtest.zip
 source/third-party-licenses.txt
 
 .vscode

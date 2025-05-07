@@ -1,6 +1,6 @@
 # Building the Add-on
 
-This document outlines the steps required to build the `autowwwleak.zip` package from the source code. The process utilizes Docker and Docker Buildx to ensure a consistent build environment, and the build script specifically requires the `bash` shell interpreter.
+This document outlines the steps required to build the `autowwwtest.zip` package from the source code. The process utilizes Docker and Docker Buildx to ensure a consistent build environment, and the build script specifically requires the `bash` shell interpreter.
 
 ## Prerequisites
 
@@ -30,4 +30,4 @@ The entire build process is handled by a single script executed with `bash`.
 
 ## Output
 
-Upon successful execution, the script will create a file named `autowwwleak.zip` in the current working directory (the project's root directory). This ZIP file contains the packaged add-on, ready for distribution or submission.
+Upon successful execution, the script will create a file named `autowwwtest.zip` in the current working directory (the project's root directory). This ZIP file contains the packaged add-on, ready for distribution or submission.
