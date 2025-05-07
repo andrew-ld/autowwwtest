@@ -1,7 +1,7 @@
 {
 	"manifest_version": 3,
 	"name": "AutoWWWTest",
-	"version": "5.5",
+	"version": "5.6",
 	"description": "Automatically discover potential security issues on the websites you visit.",
 	"icons": {
 		"16": "./resources/autowwwtest-16.png",
@@ -39,8 +39,7 @@
 	},
 	"browser_specific_settings": {
 		"gecko": {
-			"id": "{98276259-2083-40bc-976f-6c64eb27d511}",
-			"update_url": "https://andrew-ld.github.io/autowwwtest/updates.json"
+			"id": "{105c04e6-7fea-49d1-beaa-f78d53ef0fca}"
 		}
 	}
 }
