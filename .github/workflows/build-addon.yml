@@ -1,5 +1,9 @@
 name: Build Add-on and Upload Artifact
 
+permissions:
+  contents: read
+  actions: read
+
 on:
   push:
   pull_request:
